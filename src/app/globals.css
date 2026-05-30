@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========================================================================
+   LOGIC INSIGHT · Design tokens
+   ========================================================================= */
+
+@theme {
+  /* Purple ramp (cool, toward violet) */
+  --color-p-50:  #FAF7FF;
+  --color-p-100: #ECE3FF;
+  --color-p-200: #D7C2FF;
+  --color-p-300: #BC9CFF;
+  --color-p-400: #A78BFA;
+  --color-p-500: #8B5CF6;
+  --color-p-600: #7C3AED;
+  --color-p-700: #6D28D9;
+  --color-p-800: #5B21B6;
+  --color-p-900: #2E1065;
+  --color-p-950: #1A0A3D;
+
+  /* Accents */
+  --color-pink-400: #FF6B9C;
+  --color-pink-300: #FFA3C2;
+  --color-cyan-400: #5EEAD4;
+  --color-amber-400: #FBBF24;
+  --color-emerald-400: #34D399;
+  --color-rose-400:   #FB7185;
+
+  /* Surface (cool toward violet, never pure black) */
+  --color-bg:        #07050E;
+  --color-surface:   #0E0A1C;
+  --color-elevated:  #14102A;
+  --color-raised:    #1B1640;
+
+  /* Text */
+  --color-ink:       #FAF7FF;
+  --color-ink-soft:  #C9C2DD;
+  --color-ink-mute:  #837AA0;
+  --color-ink-faint: #524B6B;
+
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Motion curves */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =========================================================================
+   Base
+   ========================================================================= */
+
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-p-500);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-p-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================================
+   Always-on atmosphere
+   ========================================================================= */
+
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(900px 600px at 80% -10%, rgba(167,139,250,0.18), transparent 60%),
+    radial-gradient(800px 500px at -10% 20%, rgba(255,107,156,0.10), transparent 55%),
+    radial-gradient(1000px 700px at 50% 110%, rgba(124,58,237,0.16), transparent 60%);
+  pointer-events: none;
+}
+
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.055; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+}
+
+/* =========================================================================
+   Display utilities
+   ========================================================================= */
+
+.display-1 {
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.display-2 {
+  font-size: clamp(2.25rem, 5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.display-3 {
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, #BC9CFF 0%, #A78BFA 30%, #FF6B9C 65%, #BC9CFF 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 8s linear infinite;
+}
+
+@keyframes gradient-pan { to { background-position: 200% 0; } }
+
+.mono-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-p-200);
+}
+
+/* =========================================================================
+   Glass primitives
+   ========================================================================= */
+
+.glass {
+  background: rgba(14, 10, 28, 0.55);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass-strong {
+  background: rgba(14, 10, 28, 0.78);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+/* =========================================================================
+   Reduced motion
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
