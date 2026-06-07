@@ -26,6 +26,7 @@ const PRODUCT_ITEMS: DropdownItem[] = [
 
 const SOLUTIONS_ITEMS: DropdownItem[] = [
   { label: "Use Cases",                href: "/solutions/use-cases",                description: "Capacity, root-cause, backups, more" },
+  { label: "Coverage Explorer",        href: "/solutions/coverage",                 description: "Every domain Overwatch watches" },
   { label: "Monitoring as a Service",  href: "/solutions/monitoring-as-a-service",  description: "We run the appliance for you" },
 ];
 

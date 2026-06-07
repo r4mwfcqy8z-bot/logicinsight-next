@@ -4,7 +4,7 @@ const BASE = "https://logicinsight.io";
 
 const TOP = ["", "/pricing", "/about", "/blog", "/resources", "/demo", "/free-trial", "/partners", "/contact"];
 
-const SOLUTIONS = ["/solutions/use-cases", "/solutions/monitoring-as-a-service"];
+const SOLUTIONS = ["/solutions/use-cases", "/solutions/coverage", "/solutions/monitoring-as-a-service"];
 
 const PRODUCT = [
   "/product/features",
@@ -26,6 +26,8 @@ const PRODUCT = [
 ];
 
 const GUIDES = [
+  "/resources/glossary",
+  "/resources/deployment-timeline",
   "/resources/how-to-monitor-nutanix-with-datadog",
   "/resources/how-to-monitor-nutanix-with-grafana",
 ];

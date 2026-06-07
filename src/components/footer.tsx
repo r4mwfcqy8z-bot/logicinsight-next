@@ -32,6 +32,7 @@ const COLS = [
     title: "Solutions",
     links: [
       { label: "Use Cases",                href: "/solutions/use-cases" },
+      { label: "Coverage Explorer",        href: "/solutions/coverage" },
       { label: "Monitoring as a Service",  href: "/solutions/monitoring-as-a-service" },
       { label: "Pricing",                  href: "/pricing" },
       { label: "Partners",                 href: "/partners" },
@@ -40,10 +41,12 @@ const COLS = [
   {
     title: "Company",
     links: [
-      { label: "About",    href: "/about" },
-      { label: "Blog",     href: "/blog" },
-      { label: "Resources",href: "/resources" },
-      { label: "Contact",  href: "/contact" },
+      { label: "About",               href: "/about" },
+      { label: "Blog",                href: "/blog" },
+      { label: "Resources",           href: "/resources" },
+      { label: "Glossary",            href: "/resources/glossary" },
+      { label: "Deployment Timeline", href: "/resources/deployment-timeline" },
+      { label: "Contact",             href: "/contact" },
     ],
   },
 ];
