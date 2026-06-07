@@ -62,7 +62,7 @@ const STEPS = [
   },
 ];
 
-function Step({ step, i }: { step: (typeof STEPS)[number]; i: number }) {
+function Step({ step }: { step: (typeof STEPS)[number] }) {
   const Icon = step.icon;
   return (
     <motion.div
@@ -163,8 +163,8 @@ export default function DeploymentTimelineView() {
                 boxShadow: "0 0 12px rgba(167,139,250,0.5)",
               }}
             />
-            {STEPS.map((s, i) => (
-              <Step key={s.title} step={s} i={i} />
+            {STEPS.map((s) => (
+              <Step key={s.title} step={s} />
             ))}
           </div>
         </div>
