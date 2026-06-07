@@ -107,6 +107,7 @@ export function Nav() {
         <div className="flex items-center gap-2">
           <button
             type="button"
+            onClick={() => window.dispatchEvent(new Event("li:command"))}
             className="hidden md:flex items-center gap-2 px-3 py-2 text-sm text-[var(--color-ink-mute)] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
             aria-label="Open command palette"
           >

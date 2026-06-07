@@ -94,8 +94,19 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-white/8 flex flex-wrap justify-between gap-3 text-xs text-[var(--color-ink-faint)]">
+        <div className="mt-12 pt-6 border-t border-white/8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs text-[var(--color-ink-faint)]">
           <small>© 2026 Logic Insight, LLC. All rights reserved.</small>
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Legal">
+            {[
+              { label: "Privacy Policy", href: "/privacy-policy" },
+              { label: "Terms of Use", href: "/terms-of-service" },
+              { label: "Security", href: "/security" },
+            ].map((l) => (
+              <Link key={l.href} href={l.href} className="hover:text-[var(--color-p-300)] transition-colors">
+                {l.label}
+              </Link>
+            ))}
+          </nav>
           <small className="flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--color-emerald-400)]" />
             All systems operational

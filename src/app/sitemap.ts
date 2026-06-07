@@ -32,6 +32,8 @@ const GUIDES = [
   "/resources/how-to-monitor-nutanix-with-grafana",
 ];
 
+const LEGAL = ["/privacy-policy", "/terms-of-service", "/security"];
+
 const BLOG = [
   "/blog/nutanix-capacity-planning-guide",
   "/blog/nutanix-monitoring-tools-compared",
@@ -59,5 +61,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...SOLUTIONS.map((p) => entry(p, 0.8, "monthly")),
     ...GUIDES.map((p) => entry(p, 0.6, "monthly")),
     ...BLOG.map((p) => entry(p, 0.6, "monthly")),
+    ...LEGAL.map((p) => entry(p, 0.3, "yearly")),
   ];
 }

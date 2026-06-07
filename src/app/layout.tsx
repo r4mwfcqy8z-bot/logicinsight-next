@@ -5,6 +5,8 @@ import { LenisProvider } from "@/components/lenis-provider";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ScrollAmbient } from "@/components/wow/scroll-ambient";
+import { CommandPalette } from "@/components/wow/command-palette";
+import { PageTransition } from "@/components/wow/page-transition";
 import "./globals.css";
 
 const SITE_DESC =
@@ -118,7 +120,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="grain" aria-hidden />
         <div className="vignette" aria-hidden />
         <Nav />
-        <main className="relative z-[2]">{children}</main>
+        <CommandPalette />
+        <main className="relative z-[2]">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </body>
     </html>
