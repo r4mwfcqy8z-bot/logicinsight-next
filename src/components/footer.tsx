@@ -5,12 +5,27 @@ const COLS = [
   {
     title: "Product",
     links: [
-      { label: "Features",        href: "/product/features" },
-      { label: "HCI Monitoring",  href: "/product/hci-monitoring" },
-      { label: "SNMP Monitoring", href: "/product/snmp-monitoring" },
-      { label: "AI Assistant",    href: "/product/ai-assistant" },
-      { label: "Architecture",    href: "/product/architecture" },
-      { label: "Integrations",    href: "/product/integrations" },
+      { label: "Features",             href: "/product/features" },
+      { label: "Cluster Monitoring",   href: "/product/cluster-monitoring" },
+      { label: "Predictive Analytics", href: "/product/predictive-analytics" },
+      { label: "Network Flow",         href: "/product/network-flow-analysis" },
+      { label: "HCI Monitoring",       href: "/product/hci-monitoring" },
+      { label: "SNMP Monitoring",      href: "/product/snmp-monitoring" },
+      { label: "AHV Monitoring",       href: "/product/ahv-monitoring" },
+      { label: "AI Assistant",         href: "/product/ai-assistant" },
+      { label: "Architecture",         href: "/product/architecture" },
+      { label: "Integrations",         href: "/product/integrations" },
+    ],
+  },
+  {
+    title: "Coverage",
+    links: [
+      { label: "Prism Central",   href: "/product/prism-central-monitoring" },
+      { label: "Redfish / IPMI",  href: "/product/redfish-monitoring" },
+      { label: "HYCU backups",    href: "/product/hycu-monitoring" },
+      { label: "Datadog",         href: "/product/nutanix-datadog" },
+      { label: "Grafana",         href: "/product/nutanix-grafana" },
+      { label: "vs native Prism", href: "/product/nutanix-monitoring-vs-prism" },
     ],
   },
   {
@@ -18,6 +33,8 @@ const COLS = [
     links: [
       { label: "Use Cases",                href: "/solutions/use-cases" },
       { label: "Monitoring as a Service",  href: "/solutions/monitoring-as-a-service" },
+      { label: "Pricing",                  href: "/pricing" },
+      { label: "Partners",                 href: "/partners" },
     ],
   },
   {
@@ -25,17 +42,8 @@ const COLS = [
     links: [
       { label: "About",    href: "/about" },
       { label: "Blog",     href: "/blog" },
-      { label: "Pricing",  href: "/pricing" },
-      { label: "Contact",  href: "/about#contact" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Docs",     href: "#" },
-      { label: "Status",   href: "#" },
-      { label: "GitHub",   href: "#" },
-      { label: "RSS feed", href: "#" },
+      { label: "Resources",href: "/resources" },
+      { label: "Contact",  href: "/contact" },
     ],
   },
 ];
@@ -53,16 +61,14 @@ export function Footer() {
               Nutanix observability that thinks ahead.
             </p>
             <address className="not-italic text-sm text-[var(--color-ink-mute)] leading-relaxed">
-              425 W Colonial Dr, Ste 303
-              <br />
-              Orlando, FL 32804
+              Orlando, FL
               <br />
               <a href="mailto:contact@logicinsight.io" className="text-[var(--color-p-300)] hover:text-[var(--color-p-200)]">
                 contact@logicinsight.io
               </a>
               <br />
               <a href="tel:+14075132359" className="text-[var(--color-p-300)] hover:text-[var(--color-p-200)]">
-                +1 (407) 513-2359
+                +1-407-513-2359
               </a>
             </address>
           </div>
@@ -88,10 +94,9 @@ export function Footer() {
         <div className="mt-12 pt-6 border-t border-white/8 flex flex-wrap justify-between gap-3 text-xs text-[var(--color-ink-faint)]">
           <small>© 2026 Logic Insight, LLC. All rights reserved.</small>
           <small className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-[var(--color-emerald-400)]" style={{ boxShadow: "0 0 10px rgba(52,211,153,0.6)" }} />
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--color-emerald-400)]" />
             All systems operational
           </small>
-          <small>Made in Orlando · for infrastructure operators</small>
         </div>
       </div>
     </footer>

@@ -83,7 +83,7 @@ function WorldMap() {
         )}
       </g>
 
-      {/* Continents — abstract low-poly silhouettes */}
+      {/* Continents, abstract low-poly silhouettes */}
       <g fill="url(#world-fill)" stroke="rgba(167,139,250,0.40)" strokeWidth="1.2" strokeLinejoin="round">
         {/* North America */}
         <path d="M85,95 L165,80 L215,100 L250,135 L255,175 L235,205 L195,210 L165,235 L130,220 L100,180 L80,140 Z" />
@@ -183,12 +183,12 @@ export function NetFlow() {
             NetFlow WAN Explorer
           </span>
           <h2 className="display-2 mb-4">
-            East-west traffic, top talkers, and threats —
+            East-west traffic, top talkers, and threats,
             <br />
             <span className="serif-italic gradient-text">on one map.</span>
           </h2>
           <p className="text-lg text-[var(--color-ink-soft)]">
-            IPFIX and NetFlow analysis with DNS, GeoIP, and ASN enrichment — anchored to the alert that triggered, not assembled later.
+            IPFIX and NetFlow analysis with DNS, GeoIP, and ASN enrichment, anchored to the alert that triggered, not assembled later.
           </p>
         </motion.header>
 
@@ -344,7 +344,7 @@ export function NetFlow() {
                   </div>
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--color-bg)]/70 border border-white/8 backdrop-blur-sm text-xs">
                     <span className="w-2 h-2 rounded-full bg-[#FBBF24]" style={{ boxShadow: "0 0 8px #FBBF24" }} />
-                    <span className="text-[var(--color-ink)]"><strong>122.3%</strong> LAN to WAN data — outside normal baseline</span>
+                    <span className="text-[var(--color-ink)]"><strong>122.3%</strong> LAN to WAN data, outside normal baseline</span>
                   </div>
                   <button className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md text-white" style={{ background: "linear-gradient(135deg, #7C3AED, #FF6B9C)" }}>
                     <Sparkles size={12} /> Ask AI

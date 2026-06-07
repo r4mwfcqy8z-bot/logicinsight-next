@@ -3,6 +3,8 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 const SOURCES = [
   { id: "prism",   label: "Prism Element + Central" },
   { id: "redfish", label: "Redfish · IPMI" },
@@ -25,7 +27,7 @@ const POINTS = [
 ];
 
 const CAPABILITIES = [
-  "Cluster health, inventory, protection state, tasks, and multi-cluster context — Prism Element and Prism Central",
+  "Cluster health, inventory, protection state, tasks, and multi-cluster context, Prism Element and Prism Central",
   "HYCU jobs, object storage, retention posture, and target utilization in the same operator view",
   "Redfish, IPMI, SNMP, IPFIX, and NetFlow signals tied back to the workloads they actually affect",
   "Local collection, enrichment, analysis, dashboards, reports, and APIs stay inside one controlled boundary",
@@ -48,61 +50,69 @@ export function Forwarding() {
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
 
-  const W = 900, H = 460;
+  const W = 1100, H = 520;
   const coreCenter = { x: W / 2, y: H / 2 };
+  const COL_PAD = 130;
+  const BOX_W = 230;
+  const VPAD = 70;
+
+  const sourceColX = COL_PAD + BOX_W / 2;
+  const destColX   = W - COL_PAD - BOX_W / 2;
 
   const sourcePoints = SOURCES.map((_, i) => ({
-    x: 100,
-    y: 80 + (i * (H - 160)) / (SOURCES.length - 1),
+    x: sourceColX,
+    y: VPAD + (i * (H - VPAD * 2)) / (SOURCES.length - 1),
   }));
   const destPoints = DESTS.map((_, i) => ({
-    x: W - 100,
-    y: 100 + (i * (H - 200)) / (DESTS.length - 1),
+    x: destColX,
+    y: VPAD + 30 + (i * (H - VPAD * 2 - 60)) / (DESTS.length - 1),
   }));
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
-      <div className="mx-auto max-w-[1240px] px-6">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-[760px] mx-auto text-center mb-14"
-        >
-          <span className="mono-eyebrow inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-p-300)]" />
-            Local appliance · optional forwarding
-          </span>
-          <h2 className="display-2 mb-4">
-            Replace console sprawl{" "}
-            <span className="serif-italic gradient-text">without replacing</span>
-            <br />
-            the tools your team already trusts.
-          </h2>
-        </motion.header>
+    <section className="relative py-28 md:py-40 overflow-hidden">
+      <div className="editorial-shell">
+        {/* Header, left-aligned editorial. */}
+        <div className="grid-edit mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+            transition={{ duration: 0.8, ease: EASE }}
+            className="col-span-12 lg:col-span-8"
+          >
+            <h2 className="editorial-statement balance">
+              <span className="block">Replace console sprawl</span>
+              <span className="block italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
+                without replacing
+              </span>
+              <span className="block">the tools your team already trusts.</span>
+            </h2>
+          </motion.div>
+        </div>
 
-        {/* Diagram */}
-        <div className="relative rounded-3xl glass-strong p-6 md:p-10 mb-12">
+        {/* Diagram in editorial emptiness, no glass-strong wrapper card. */}
+        <div className="relative mb-24 md:mb-32">
+          {/* Background hairline grid behind diagram. */}
           <div
-            className="absolute -inset-10 -z-10 blur-3xl pointer-events-none"
-            style={{ background: "radial-gradient(circle, rgba(167,139,250,0.20), transparent 60%)" }}
             aria-hidden
+            className="absolute inset-x-[-4vw] inset-y-[-3rem] -z-10"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(167,139,250,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,0.06) 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+              WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+              maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 blur-3xl pointer-events-none"
+            style={{ background: "radial-gradient(ellipse 60% 70% at 50% 50%, rgba(167,139,250,0.20), transparent 70%)" }}
           />
 
           <svg ref={ref} viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
             <defs>
-              <linearGradient id="src-arrow" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"  stopColor="#A78BFA" stopOpacity="0" />
-                <stop offset="60%" stopColor="#A78BFA" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#A78BFA" stopOpacity="0" />
-              </linearGradient>
-              <linearGradient id="dest-arrow" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stopColor="#FF6B9C" stopOpacity="0" />
-                <stop offset="40%" stopColor="#FF6B9C" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#FF6B9C" stopOpacity="0" />
-              </linearGradient>
-              <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
+              <radialGradient id="fwd-core-glow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%"   stopColor="rgba(167,139,250,0.4)" />
                 <stop offset="100%" stopColor="transparent" />
               </radialGradient>
@@ -110,45 +120,48 @@ export function Forwarding() {
 
             {/* Source → core lines */}
             {sourcePoints.map((p, i) => {
-              const d = `M${p.x + 110},${p.y} C${p.x + 200},${p.y} ${coreCenter.x - 140},${coreCenter.y} ${coreCenter.x - 80},${coreCenter.y}`;
+              const startX = p.x + BOX_W / 2;
+              const endX = coreCenter.x - 130;
+              const d = `M${startX},${p.y} C${startX + 90},${p.y} ${endX - 60},${coreCenter.y} ${endX},${coreCenter.y}`;
               return (
                 <motion.path
                   key={`src-${i}`}
                   d={d}
-                  stroke="rgba(167,139,250,0.35)"
-                  strokeWidth="1.2"
+                  stroke="rgba(167,139,250,0.4)"
+                  strokeWidth="1.1"
                   fill="none"
                   initial={{ pathLength: 0 }}
                   animate={inView ? { pathLength: 1 } : {}}
-                  transition={{ duration: 1.4, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 1.4, delay: 0.2 + i * 0.1, ease: EASE }}
                 />
               );
             })}
 
             {/* Core → dest lines */}
             {destPoints.map((p, i) => {
-              const d = `M${coreCenter.x + 80},${coreCenter.y} C${coreCenter.x + 200},${coreCenter.y} ${p.x - 200},${p.y} ${p.x - 110},${p.y}`;
+              const startX = coreCenter.x + 130;
+              const endX = p.x - BOX_W / 2;
+              const d = `M${startX},${coreCenter.y} C${startX + 60},${coreCenter.y} ${endX - 90},${p.y} ${endX},${p.y}`;
               return (
                 <motion.path
                   key={`dest-${i}`}
                   d={d}
-                  stroke={DESTS[i].opt ? "rgba(255,107,156,0.30)" : "rgba(255,107,156,0.50)"}
-                  strokeWidth="1.2"
-                  strokeDasharray={DESTS[i].opt ? "4 4" : ""}
+                  stroke={DESTS[i].opt ? "rgba(255,107,156,0.32)" : "rgba(255,107,156,0.6)"}
+                  strokeWidth="1.1"
+                  strokeDasharray={DESTS[i].opt ? "4 5" : ""}
                   fill="none"
                   initial={{ pathLength: 0 }}
                   animate={inView ? { pathLength: 1 } : {}}
-                  transition={{ duration: 1.4, delay: 0.8 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 1.4, delay: 0.8 + i * 0.1, ease: EASE }}
                 />
               );
             })}
 
-            {/* Traveling pulses */}
             {sourcePoints.map((p, i) => (
               <Pulse
                 key={`pulse-src-${i}`}
-                from={{ x: p.x + 110, y: p.y }}
-                to={{ x: coreCenter.x - 80, y: coreCenter.y }}
+                from={{ x: p.x + BOX_W / 2, y: p.y }}
+                to={{ x: coreCenter.x - 130, y: coreCenter.y }}
                 color="#A78BFA"
                 delay={1.2 + i * 0.3}
               />
@@ -156,126 +169,139 @@ export function Forwarding() {
             {destPoints.map((p, i) => (
               <Pulse
                 key={`pulse-dest-${i}`}
-                from={{ x: coreCenter.x + 80, y: coreCenter.y }}
-                to={{ x: p.x - 110, y: p.y }}
+                from={{ x: coreCenter.x + 130, y: coreCenter.y }}
+                to={{ x: p.x - BOX_W / 2, y: p.y }}
                 color="#FF6B9C"
                 delay={2.0 + i * 0.3}
               />
             ))}
 
-            {/* Source boxes */}
+            {/* Source boxes, cleaner, no decorative dot. */}
             {SOURCES.map((s, i) => {
               const p = sourcePoints[i];
+              const rectX = p.x - BOX_W / 2;
               return (
                 <motion.g
                   key={s.id}
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.55, delay: i * 0.08, ease: EASE }}
                 >
-                  <rect x={p.x - 10} y={p.y - 18} width="220" height="36" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)" />
-                  <circle cx={p.x + 8} cy={p.y} r="3.5" fill="#A78BFA" />
-                  <text x={p.x + 22} y={p.y + 4} fontSize="13" fontFamily="Inter, sans-serif" fontWeight="500" fill="#FAF7FF">
+                  <rect
+                    x={rectX} y={p.y - 22} width={BOX_W} height="44" rx="6"
+                    fill="rgba(20, 16, 42, 0.85)" stroke="rgba(167,139,250,0.32)" strokeWidth="1"
+                  />
+                  <text x={rectX + 16} y={p.y + 4.5} fontSize="13" fontFamily="var(--font-sans), Inter, sans-serif" fontWeight="500" fill="#F4F1EA">
                     {s.label}
                   </text>
                 </motion.g>
               );
             })}
 
-            {/* Core: Overwatch appliance */}
+            {/* Core: Overwatch appliance, sharper editorial framing. */}
             <motion.g
               initial={{ opacity: 0, scale: 0.92 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
             >
-              <circle cx={coreCenter.x} cy={coreCenter.y} r="120" fill="url(#core-glow)" />
+              <circle cx={coreCenter.x} cy={coreCenter.y} r="140" fill="url(#fwd-core-glow)" />
               <motion.rect
-                x={coreCenter.x - 80} y={coreCenter.y - 60}
-                width="160" height="120" rx="20"
-                fill="rgba(124,58,237,0.22)"
+                x={coreCenter.x - 120} y={coreCenter.y - 75}
+                width="240" height="150" rx="14"
+                fill="rgba(124,58,237,0.18)"
                 stroke="rgba(167,139,250,0.6)"
-                strokeWidth="1.4"
-                animate={{ scale: [1, 1.03, 1] }}
+                strokeWidth="1.3"
+                animate={{ scale: [1, 1.025, 1] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 style={{ transformOrigin: `${coreCenter.x}px ${coreCenter.y}px` }}
               />
-              <text x={coreCenter.x} y={coreCenter.y - 8} textAnchor="middle" fontSize="20" fontWeight="800" fontFamily="Inter, sans-serif" letterSpacing="0.10em" fill="#D7C2FF">
+              <text x={coreCenter.x} y={coreCenter.y - 18} textAnchor="middle" fontSize="22" fontWeight="700" fontFamily="var(--font-sans), Inter, sans-serif" letterSpacing="0.04em" fill="#ECE3FF">
                 OVERWATCH
               </text>
-              <text x={coreCenter.x} y={coreCenter.y + 14} textAnchor="middle" fontSize="10" fontFamily="JetBrains Mono, monospace" fill="#837AA0">
-                Ubuntu 24.04 · single appliance
+              <text x={coreCenter.x} y={coreCenter.y + 4} textAnchor="middle" fontSize="10" fontFamily="var(--font-mono), JetBrains Mono, monospace" letterSpacing="0.10em" fill="#837AA0">
+                One local appliance
               </text>
-              <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#BC9CFF" textAnchor="middle">
-                <rect x={coreCenter.x - 60} y={coreCenter.y + 24} width="56" height="16" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" />
-                <text x={coreCenter.x - 32} y={coreCenter.y + 34}>ML</text>
-                <rect x={coreCenter.x + 4} y={coreCenter.y + 24} width="56" height="16" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" />
-                <text x={coreCenter.x + 32} y={coreCenter.y + 34}>FORECAST</text>
+              <g fontFamily="var(--font-mono), JetBrains Mono, monospace" fontSize="9" fill="#BC9CFF" textAnchor="middle" letterSpacing="0.16em">
+                <text x={coreCenter.x - 60} y={coreCenter.y + 38}>ML</text>
+                <text x={coreCenter.x} y={coreCenter.y + 38}>ANOMALY</text>
+                <text x={coreCenter.x + 60} y={coreCenter.y + 38}>FORECAST</text>
               </g>
             </motion.g>
 
-            {/* Destination boxes */}
+            {/* Destination boxes, italic note for "optional". */}
             {DESTS.map((d, i) => {
               const p = destPoints[i];
+              const h = d.opt ? 58 : 44;
+              const rectX = p.x - BOX_W / 2;
               return (
                 <motion.g
                   key={d.id}
                   initial={{ opacity: 0, x: 10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 1.0 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.55, delay: 1.0 + i * 0.08, ease: EASE }}
                 >
-                  <rect x={p.x - 110} y={p.y - 22} width="220" height="44" rx="10" fill="rgba(255,255,255,0.04)" stroke={d.opt ? "rgba(255,107,156,0.25)" : "rgba(255,107,156,0.50)"} />
-                  <circle cx={p.x - 90} cy={p.y} r="3.5" fill="#FF6B9C" />
-                  <text x={p.x - 76} y={p.y - 1} fontSize="13" fontFamily="Inter, sans-serif" fontWeight="500" fill="#FAF7FF">
+                  <rect
+                    x={rectX} y={p.y - h / 2}
+                    width={BOX_W} height={h} rx="6"
+                    fill="rgba(20, 16, 42, 0.85)"
+                    stroke={d.opt ? "rgba(255,107,156,0.34)" : "rgba(255,107,156,0.6)"}
+                    strokeWidth="1"
+                  />
+                  <text
+                    x={rectX + 16}
+                    y={p.y - (d.opt ? 4 : -4.5)}
+                    fontSize="13" fontFamily="var(--font-sans), Inter, sans-serif" fontWeight="500" fill="#F4F1EA"
+                  >
                     {d.label}
                   </text>
                   {d.opt && (
-                    <text x={p.x - 76} y={p.y + 14} fontSize="9" fontFamily="JetBrains Mono, monospace" fill="#FF6B9C" letterSpacing="0.06em">
-                      OPTIONAL · TOGGLE PER STREAM
+                    <text
+                      x={rectX + 16} y={p.y + 14}
+                      fontSize="9" fontStyle="italic" fontFamily="var(--font-sans), Inter, sans-serif"
+                      fill="#FF6B9C" letterSpacing="0.04em"
+                    >
+                      optional, toggle per stream
                     </text>
                   )}
                 </motion.g>
               );
             })}
 
-            {/* Column labels */}
-            <text x={155} y={45} fontFamily="JetBrains Mono, monospace" fontSize="10" letterSpacing="0.14em" fill="#837AA0">SOURCES (LOCAL)</text>
-            <text x={W - 200} y={45} fontFamily="JetBrains Mono, monospace" fontSize="10" letterSpacing="0.14em" fill="#837AA0">DESTINATIONS</text>
+            <text x={sourceColX} y={36} textAnchor="middle" fontFamily="var(--font-mono), JetBrains Mono, monospace" fontSize="10" letterSpacing="0.18em" fill="#837AA0">SOURCES (LOCAL)</text>
+            <text x={destColX}   y={36} textAnchor="middle" fontFamily="var(--font-mono), JetBrains Mono, monospace" fontSize="10" letterSpacing="0.18em" fill="#837AA0">DESTINATIONS</text>
           </svg>
         </div>
 
-        {/* Three principles */}
-        <div className="grid md:grid-cols-3 gap-4 mb-12">
-          {POINTS.map((p, i) => (
-            <motion.div
-              key={p}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="flex gap-3 px-5 py-5 rounded-2xl glass"
-            >
-              <span className="mono-eyebrow text-[var(--color-p-300)] shrink-0">{String(i + 1).padStart(2, "0")}</span>
-              <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">{p}</p>
-            </motion.div>
-          ))}
+        {/* Three principles, editorial vertical run, NOT 3-up cards. */}
+        <div className="grid-edit mb-20 md:mb-28">
+          <div className="col-span-12 lg:col-start-3 lg:col-span-9 space-y-0">
+            {POINTS.map((p, i) => (
+              <motion.div
+                key={p}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
+                className="py-6 border-b border-[rgba(167,139,250,0.16)] last:border-b-0"
+              >
+                <p className="editorial-lede text-[var(--color-ink)] balance max-w-[60ch]">{p}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* Four capability rows */}
-        <ul className="grid md:grid-cols-2 gap-3">
+        {/* Four capabilities, 2x2 with hairlines, no card pills, no decorative dots. */}
+        <ul className="grid md:grid-cols-2 gap-0 border-t border-[rgba(167,139,250,0.16)]">
           {CAPABILITIES.map((c, i) => (
             <motion.li
               key={c}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-              transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-start gap-3 px-4 py-3 rounded-xl bg-white/[0.02] border border-white/5"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "0px 0px -5% 0px" }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: EASE }}
+              className={`px-2 py-8 border-b border-[rgba(167,139,250,0.16)] ${i % 2 === 0 ? "md:border-r md:border-r-[rgba(167,139,250,0.16)] md:pr-10" : "md:pl-10"}`}
             >
-              <span
-                className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-emerald-400)] shrink-0"
-                style={{ boxShadow: "0 0 8px rgba(52,211,153,0.85)" }}
-              />
-              <span className="text-sm text-[var(--color-ink-soft)] leading-relaxed">{c}</span>
+              <p className="body-l leading-[1.55]">{c}</p>
             </motion.li>
           ))}
         </ul>

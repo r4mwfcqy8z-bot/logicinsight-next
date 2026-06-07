@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 /* =========================================================================
-   LOGIC INSIGHT · Design tokens
+   LOGIC INSIGHT · Editorial design system
+   Brand override (LILA rule): purple stays — executed with restraint, not AI slop.
    ========================================================================= */
 
 @theme {
-  /* Purple ramp (cool, toward violet) */
+  /* Purple — brand spine. One ramp, used sparingly. */
   --color-p-50:  #FAF7FF;
   --color-p-100: #ECE3FF;
   --color-p-200: #D7C2FF;
@@ -18,7 +19,7 @@
   --color-p-900: #2E1065;
   --color-p-950: #1A0A3D;
 
-  /* Accents */
+  /* Accents — supporting cast, used ONCE per section max. */
   --color-pink-400: #FF6B9C;
   --color-pink-300: #FFA3C2;
   --color-cyan-400: #5EEAD4;
@@ -26,24 +27,28 @@
   --color-emerald-400: #34D399;
   --color-rose-400:   #FB7185;
 
-  /* Surface (cool toward violet, never pure black) */
-  --color-bg:        #07050E;
+  /* Editorial neutrals — warm bone, not stark white. */
+  --color-bone:      #F4F1EA;
+  --color-bone-soft: #E5DFD0;
+
+  /* Surface — warm-toward-violet, never pure black. */
+  --color-bg:        #08060E;
   --color-surface:   #0E0A1C;
   --color-elevated:  #14102A;
   --color-raised:    #1B1640;
 
-  /* Text */
-  --color-ink:       #FAF7FF;
+  /* Ink. */
+  --color-ink:       #F4F1EA;
   --color-ink-soft:  #C9C2DD;
   --color-ink-mute:  #837AA0;
   --color-ink-faint: #524B6B;
 
-  /* Type */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  /* Type — Geist only, played at extreme scale + weight. */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Motion curves */
+  /* Motion — editorial curves, no spring overshoot by default. */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -57,7 +62,8 @@ html {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "ss01", "cv11", "calt", "kern";
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -87,97 +93,582 @@ body {
 }
 
 /* =========================================================================
-   Always-on atmosphere
+   Cinematic atmosphere — one soft ambient + grain + vignette.
+   No more rainbow-aurora drifting blobs.
    ========================================================================= */
 
 body::before {
   content: "";
   position: fixed; inset: 0; z-index: 0;
   background:
-    radial-gradient(900px 600px at 80% -10%, rgba(167,139,250,0.18), transparent 60%),
-    radial-gradient(800px 500px at -10% 20%, rgba(255,107,156,0.10), transparent 55%),
-    radial-gradient(1000px 700px at 50% 110%, rgba(124,58,237,0.16), transparent 60%);
+    radial-gradient(60vw 60vh at 78% -10%, rgba(139, 92, 246, 0.10), transparent 55%),
+    radial-gradient(50vw 50vh at -8% 110%, rgba(124, 58, 237, 0.07), transparent 60%);
   pointer-events: none;
 }
 
 .grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 60;
+  opacity: 0.045; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
+
+.vignette {
   position: fixed; inset: 0; pointer-events: none; z-index: 1;
-  opacity: 0.055; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  background: radial-gradient(120vh 100vh at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%);
 }
 
 /* =========================================================================
-   Display utilities
+   Editorial type system
+   Heavily contrasted scale. Hierarchy via weight + tracking, not flourish.
    ========================================================================= */
 
-.display-1 {
-  font-size: clamp(3rem, 7vw, 7rem);
+/* Show-stoppers — for hero / manifesto moments only. */
+.editorial-display {
+  font-size: clamp(2.75rem, 6.6vw, 6rem);
   font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 0.95;
+  line-height: 1.05;
+  padding-bottom: 0.1em;
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+/* Section-opener statements. */
+.editorial-statement {
+  font-size: clamp(2.5rem, 6.8vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  padding-bottom: 0.08em;
+}
+
+/* Mid-section headlines. */
+.editorial-lede {
+  font-size: clamp(1.75rem, 3.4vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  padding-bottom: 0.06em;
+}
+
+/* Sub-lede. */
+.editorial-sub {
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  color: var(--color-ink-soft);
+}
+
+/* Big numerals — used for stats. */
+.numeral {
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.84;
+  font-feature-settings: "tnum", "ss01";
+}
+
+/* Legacy display classes — preserved for subpages, re-tuned. */
+.display-1 {
+  font-size: clamp(3rem, 7.5vw, 7.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
 }
 
 .display-2 {
-  font-size: clamp(2.25rem, 5vw, 5rem);
+  font-size: clamp(2.25rem, 5.2vw, 5.25rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
+  letter-spacing: -0.034em;
+  line-height: 0.98;
 }
 
 .display-3 {
-  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-size: clamp(1.75rem, 3.2vw, 3.25rem);
   font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  letter-spacing: -0.028em;
+  line-height: 1.05;
 }
 
+/*
+   Same-family emphasis (italic + heavier weight). Replaces the old
+   "Instrument Serif italic" recipe everywhere it appears across 26 pages.
+   The class name stays so subpages keep compiling.
+*/
 .serif-italic {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.005em;
+  font-weight: 700;
+  letter-spacing: -0.028em;
 }
 
+/*
+   Static editorial gradient — used sparingly, no animation pan.
+   The animated rainbow recipe was an AI tell; killed.
+*/
 .gradient-text {
-  background: linear-gradient(120deg, #BC9CFF 0%, #A78BFA 30%, #FF6B9C 65%, #BC9CFF 100%);
-  background-size: 200% 100%;
+  background: linear-gradient(96deg, #ECE3FF 0%, #BC9CFF 38%, #A78BFA 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradient-pan 8s linear infinite;
 }
 
-@keyframes gradient-pan { to { background-position: 200% 0; } }
+.gradient-text-warm {
+  background: linear-gradient(96deg, #F4F1EA 0%, #FFA3C2 55%, #BC9CFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
+/* Editorial body. */
+.body-l {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  color: var(--color-ink-soft);
+}
+
+.body-m {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+/* Editorial kicker — replaces the .mono-eyebrow + pill + dot pattern. */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-p-300);
+  display: inline-block;
+}
+
+/* mono-eyebrow kept for legacy — used by subpages. */
 .mono-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-p-300);
+}
+
+/* Editorial numbered marker, e.g. § 03 */
+.section-mark {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-faint);
   text-transform: uppercase;
-  color: var(--color-p-200);
 }
 
+/* Text balance helper for editorial headlines. */
+.balance { text-wrap: balance; }
+.pretty  { text-wrap: pretty; }
+
 /* =========================================================================
-   Glass primitives
+   Glass primitives — softer, less generic.
    ========================================================================= */
 
 .glass {
-  background: rgba(14, 10, 28, 0.55);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(14, 10, 28, 0.45);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 .glass-strong {
-  background: rgba(14, 10, 28, 0.78);
-  backdrop-filter: blur(26px) saturate(180%);
-  -webkit-backdrop-filter: blur(26px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(14, 10, 28, 0.72);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.glass-panel {
+  background: linear-gradient(180deg, #14102A 0%, #0E0A1C 100%);
+  border: 1px solid rgba(167,139,250,0.20);
+  box-shadow:
+    0 30px 80px -20px rgba(0,0,0,0.85),
+    0 0 0 1px rgba(167,139,250,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Editorial surface — non-glass, matte, layered. */
+.matte {
+  background: linear-gradient(180deg, rgba(20, 16, 42, 0.6), rgba(8, 6, 14, 0.85));
+  border: 1px solid rgba(167,139,250,0.10);
+  box-shadow: 0 30px 70px -30px rgba(0,0,0,0.7);
+}
+
+.matte-strong {
+  background: linear-gradient(180deg, rgba(20, 16, 42, 0.92), rgba(8, 6, 14, 0.96));
+  border: 1px solid rgba(167,139,250,0.18);
+  box-shadow:
+    0 50px 120px -30px rgba(0,0,0,0.85),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/*
+   SIGNATURE glass — frosted, refractive, reserved for ONE moment per page.
+   Use for hero plates, premium pricing cards, final pull-quote panels.
+*/
+.signature-glass {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+    rgba(20, 16, 42, 0.35);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(255,255,255,0.05),
+    0 30px 80px -16px rgba(0,0,0,0.55);
+}
+
+.signature-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 24% 0%, rgba(255,255,255,0.18), transparent 32%),
+    radial-gradient(circle at 90% 100%, rgba(167,139,250,0.16), transparent 40%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .signature-glass {
+    background: rgba(20, 16, 42, 0.94);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Subtle organic rotation helpers — for selected polaroid / postcard moments. */
+.skew-soft-left  { transform: rotate(-1.2deg); }
+.skew-soft-right { transform: rotate(1deg); }
+.skew-edit-1     { transform: rotate(-0.4deg); }
+.skew-edit-2     { transform: rotate(0.3deg); }
+
+/* =========================================================================
+   Editorial prose — long-form article rendering for blog posts.
+   Applied to a wrapper that contains imported HTML (<p>, <h2>, <h3>, <ul>, etc.).
+   ========================================================================= */
+
+.prose-editorial {
+  max-width: 68ch;
+  margin-inline: auto;
+  color: var(--color-ink-soft);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  letter-spacing: -0.005em;
+  font-feature-settings: "ss01", "cv11", "kern";
+}
+
+.prose-editorial > * + * { margin-top: 1.35em; }
+
+.prose-editorial p {
+  color: var(--color-ink-soft);
+}
+
+.prose-editorial h2 {
+  margin-top: 3em;
+  margin-bottom: 0.6em;
+  font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.prose-editorial h3 {
+  margin-top: 2.4em;
+  margin-bottom: 0.5em;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.prose-editorial h4 {
+  margin-top: 2em;
+  margin-bottom: 0.4em;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.prose-editorial a {
+  color: var(--color-p-200);
+  text-decoration: underline;
+  text-decoration-color: rgba(167,139,250,0.3);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.3s var(--ease-editorial), color 0.3s var(--ease-editorial);
+}
+.prose-editorial a:hover {
+  color: var(--color-p-100);
+  text-decoration-color: var(--color-p-300);
+}
+
+.prose-editorial strong { color: var(--color-ink); font-weight: 600; }
+.prose-editorial em { font-style: italic; }
+
+.prose-editorial ul,
+.prose-editorial ol {
+  margin-block: 1.35em;
+  padding-left: 1.4em;
+}
+
+.prose-editorial ul { list-style: none; padding-left: 0; }
+.prose-editorial ul > li {
+  position: relative;
+  padding-left: 1.4em;
+  margin-block: 0.55em;
+}
+.prose-editorial ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 0.45em;
+  height: 1px;
+  background: var(--color-p-300);
+}
+
+.prose-editorial ol {
+  counter-reset: list;
+  list-style: none;
+  padding-left: 0;
+}
+.prose-editorial ol > li {
+  counter-increment: list;
+  position: relative;
+  padding-left: 2.6em;
+  margin-block: 0.6em;
+}
+.prose-editorial ol > li::before {
+  content: counter(list, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  letter-spacing: 0.16em;
+  color: var(--color-p-300);
+}
+
+.prose-editorial blockquote {
+  margin-block: 2em;
+  padding: 0.5em 0 0.5em 1.5em;
+  border-left: 2px solid var(--color-p-400);
+  font-style: italic;
+  color: var(--color-ink);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.prose-editorial code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: rgba(167,139,250,0.10);
+  color: var(--color-p-100);
+  letter-spacing: 0;
+}
+
+.prose-editorial pre {
+  margin-block: 1.75em;
+  padding: 1.25em 1.5em;
+  border-radius: 12px;
+  background: rgba(14, 10, 28, 0.6);
+  border: 1px solid rgba(167,139,250,0.18);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+}
+.prose-editorial pre code { background: transparent; padding: 0; }
+
+.prose-editorial table {
+  width: 100%;
+  margin-block: 2em;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.prose-editorial th,
+.prose-editorial td {
+  padding: 0.85em 1em;
+  text-align: left;
+  border-bottom: 1px solid rgba(167,139,250,0.16);
+  vertical-align: top;
+}
+.prose-editorial th {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-p-300);
+  border-bottom: 1px solid rgba(167,139,250,0.32);
+}
+
+.prose-editorial hr {
+  margin-block: 3em;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.32), transparent);
+}
+
+/* First-paragraph drop emphasis — editorial signature. */
+.prose-editorial > p:first-of-type {
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
 }
 
 /* =========================================================================
-   Reduced motion
+   Layout primitives — asymmetric helpers.
+   ========================================================================= */
+
+.editorial-shell {
+  width: 100%;
+  max-width: 1480px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+.full-bleed {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 12-col editorial grid for asymmetric placement. */
+.grid-edit {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2.4vw, 2rem);
+  row-gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+/* =========================================================================
+   Depth + light primitives
+   ========================================================================= */
+
+.depth-1 {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.04) inset,
+    0 14px 40px -16px rgba(0,0,0,0.55);
+}
+
+.depth-2 {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.05) inset,
+    0 30px 80px -24px rgba(0,0,0,0.75);
+}
+
+.violet-glow {
+  box-shadow:
+    0 0 0 1px rgba(167,139,250,0.15),
+    0 30px 80px -16px rgba(124,58,237,0.45);
+}
+
+.rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.32), transparent);
+}
+
+.rule-strong {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(167,139,250,0.55) 50%, transparent 95%);
+}
+
+/* =========================================================================
+   Editorial CTA — one button treatment, restrained, no sheen sweep.
+   ========================================================================= */
+
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 999px;
+  color: #07050E;
+  background: var(--color-ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    inset 0 -1px 0 rgba(0,0,0,0.08),
+    0 1px 0 rgba(0,0,0,0.15),
+    0 18px 40px -20px rgba(244,241,234,0.45);
+  transition: transform 0.5s var(--ease-editorial), background-color 0.4s var(--ease-editorial), box-shadow 0.4s var(--ease-editorial);
+  will-change: transform;
+}
+.btn-primary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    inset 0 -1px 0 rgba(0,0,0,0.10),
+    0 1px 0 rgba(0,0,0,0.20),
+    0 28px 60px -22px rgba(244,241,234,0.65);
+}
+.btn-primary:active { transform: translateY(0); transition-duration: 0.15s; }
+
+.btn-ghost {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 999px;
+  color: var(--color-ink);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.16);
+  transition: border-color 0.4s var(--ease-editorial), background-color 0.4s var(--ease-editorial), transform 0.4s var(--ease-editorial);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.04); transform: translateY(-1px); }
+
+.btn-violet {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 999px;
+  color: var(--color-ink);
+  background: var(--color-p-600);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 16px 40px -12px rgba(124,58,237,0.55);
+  transition: background-color 0.4s var(--ease-editorial), transform 0.4s var(--ease-editorial);
+}
+.btn-violet:hover { background: var(--color-p-500); transform: translateY(-1px); }
+
+/* =========================================================================
+   Reduced motion (mandatory; skill rule)
    ========================================================================= */
 
 @media (prefers-reduced-motion: reduce) {

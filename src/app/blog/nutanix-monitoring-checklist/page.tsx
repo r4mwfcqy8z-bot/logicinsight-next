@@ -1,0 +1,30 @@
+import { BlogArticle } from "@/components/blog-article";
+import { FinalCTA } from "@/components/sections/why-and-cta";
+import { article } from "@/content/blog/nutanix-monitoring-checklist";
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default function ArticlePage() {
+  return (
+    <>
+      <BlogArticle
+        title={article.title}
+        description={article.description}
+        category={article.category}
+        readMin={article.readMin}
+        art={article.art as 1 | 2 | 3 | 4}
+        contentHtml={article.contentHtml}
+        next={{
+          slug: "nutanix-storage-monitoring-containers-vdisks",
+          title: "Nutanix Storage Monitoring Deep Dive",
+          category: "Storage",
+          art: 3 as 1 | 2 | 3 | 4,
+        }}
+      />
+      <FinalCTA />
+    </>
+  );
+}

@@ -7,7 +7,7 @@ import { useRef, useMemo, Suspense } from "react";
 import * as THREE from "three";
 
 /**
- * Cluster constellation — second 3D moment.
+ * Cluster constellation, second 3D moment.
  * Nutanix anchor in the center; rings of Hardware, Network, Backup, Storage
  * satellites orbiting on different planes.
  */
@@ -107,17 +107,17 @@ function Ring({ radius, opacity = 0.18, tiltX = 0, tiltZ = 0 }: {
 function Constellation() {
   const sats = useMemo<Sat[]>(
     () => [
-      // Ring 1 — Hardware (inner)
+      // Ring 1, Hardware (inner)
       { ringRadius: 2.2, speed: 0.22, startAngle: 0,           tiltX: 0.18,  tiltZ: 0.05,  color: "#A78BFA", scale: 0.18 },
       { ringRadius: 2.2, speed: 0.22, startAngle: Math.PI,     tiltX: 0.18,  tiltZ: 0.05,  color: "#A78BFA", scale: 0.14 },
-      // Ring 2 — Network
+      // Ring 2, Network
       { ringRadius: 2.9, speed: -0.16, startAngle: 0.5,        tiltX: -0.22, tiltZ: 0.18,  color: "#FF6B9C", scale: 0.16 },
       { ringRadius: 2.9, speed: -0.16, startAngle: Math.PI*0.9,tiltX: -0.22, tiltZ: 0.18,  color: "#FF6B9C", scale: 0.20 },
       { ringRadius: 2.9, speed: -0.16, startAngle: Math.PI*1.5,tiltX: -0.22, tiltZ: 0.18,  color: "#FFA3C2", scale: 0.13 },
-      // Ring 3 — Backup
+      // Ring 3, Backup
       { ringRadius: 3.6, speed: 0.12,  startAngle: 0.2,        tiltX: 0.32,  tiltZ: -0.20, color: "#C39BFF", scale: 0.18 },
       { ringRadius: 3.6, speed: 0.12,  startAngle: Math.PI*0.8,tiltX: 0.32,  tiltZ: -0.20, color: "#C39BFF", scale: 0.15 },
-      // Ring 4 — Storage (outer)
+      // Ring 4, Storage (outer)
       { ringRadius: 4.4, speed: -0.08, startAngle: 0,          tiltX: -0.08, tiltZ: 0.30,  color: "#8B5CF6", scale: 0.22 },
       { ringRadius: 4.4, speed: -0.08, startAngle: Math.PI*0.6,tiltX: -0.08, tiltZ: 0.30,  color: "#8B5CF6", scale: 0.17 },
       { ringRadius: 4.4, speed: -0.08, startAngle: Math.PI*1.3,tiltX: -0.08, tiltZ: 0.30,  color: "#D7C2FF", scale: 0.14 },
@@ -141,7 +141,7 @@ function Constellation() {
 
 function Dust() {
   const positions = useMemo(() => {
-    const n = 300;
+    const n = 190;
     const arr = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
       const r = 5 + Math.random() * 5;
@@ -173,9 +173,10 @@ export function ClusterConstellation() {
   return (
     <div className="absolute inset-0">
       <Canvas
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance", stencil: false }}
         camera={{ position: [0, 1.4, 8], fov: 50 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.4} />
@@ -186,7 +187,7 @@ export function ClusterConstellation() {
           <Dust />
 
           <EffectComposer multisampling={0}>
-            <Bloom intensity={1.0} luminanceThreshold={0.25} luminanceSmoothing={0.6} mipmapBlur />
+            <Bloom intensity={0.75} luminanceThreshold={0.3} luminanceSmoothing={0.5} mipmapBlur />
           </EffectComposer>
         </Suspense>
       </Canvas>

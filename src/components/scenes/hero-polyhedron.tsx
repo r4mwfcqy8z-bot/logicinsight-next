@@ -7,7 +7,7 @@ import { useRef, useMemo, Suspense } from "react";
 import * as THREE from "three";
 
 /**
- * Hero polyhedron — first-paint 3D signature.
+ * Hero polyhedron, first-paint 3D signature.
  * - Distorted icosahedron core with bloom
  * - 8 orbiting low-poly satellites
  * - 400-point starfield
@@ -111,7 +111,7 @@ function Satellites() {
 
 function StarsField() {
   const positions = useMemo(() => {
-    const n = 400;
+    const n = 240;
     const arr = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
       arr[i * 3]     = (Math.random() - 0.5) * 30;
@@ -144,9 +144,10 @@ export function HeroPolyhedron() {
   return (
     <div className="absolute inset-0">
       <Canvas
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance", stencil: false, depth: true }}
         camera={{ position: [0, 0, 7], fov: 50 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.3} />
@@ -159,7 +160,7 @@ export function HeroPolyhedron() {
           <StarsField />
 
           <EffectComposer multisampling={0}>
-            <Bloom intensity={0.9} luminanceThreshold={0.25} luminanceSmoothing={0.6} mipmapBlur />
+            <Bloom intensity={0.7} luminanceThreshold={0.3} luminanceSmoothing={0.5} mipmapBlur />
           </EffectComposer>
         </Suspense>
       </Canvas>

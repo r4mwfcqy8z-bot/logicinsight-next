@@ -17,11 +17,11 @@ interface DropdownItem {
 
 const PRODUCT_ITEMS: DropdownItem[] = [
   { label: "Features",        href: "/product/features",        description: "Five engines, one console" },
-  { label: "HCI Monitoring",  href: "/product/hci-monitoring",  description: "Built for converged infra" },
+  { label: "HCI Monitoring",  href: "/product/hci-monitoring",  description: "Built for converged infrastructure" },
   { label: "SNMP Monitoring", href: "/product/snmp-monitoring", description: "Every device on the wire" },
   { label: "AI Assistant",    href: "/product/ai-assistant",    description: "Answers backed by live data" },
   { label: "Architecture",    href: "/product/architecture",    description: "Inside the appliance" },
-  { label: "Integrations",    href: "/product/integrations",    description: "Datadog, Grafana, HYCU, more" },
+  { label: "Integrations",    href: "/product/integrations",    description: "Datadog, Grafana, HYCU, and more" },
 ];
 
 const SOLUTIONS_ITEMS: DropdownItem[] = [
@@ -116,34 +116,21 @@ export function Nav() {
           </button>
 
           <Link
-            href="/about#contact"
+            href="/demo"
             className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full bg-white/5 border border-white/10 text-[var(--color-ink)] hover:bg-white/10 hover:border-[var(--color-p-300)]/40 transition-all"
           >
             <Calendar size={14} />
             <span>Demo</span>
           </Link>
 
-          <Magnetic strength={0.25}>
+          <Magnetic strength={0.22}>
             <Link
-              href="/pricing"
-              className="relative inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full text-white overflow-hidden group"
-              style={{
-                background: "linear-gradient(135deg, #7C3AED 0%, #8B5CF6 60%, #FF6B9C 130%)",
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.25), 0 1px 1px rgba(76,29,149,0.4), 0 16px 40px -12px rgba(124,58,237,0.7)",
-              }}
+              href="/free-trial"
+              className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full text-[#07050E] bg-[var(--color-ink)] hover:bg-white transition-all"
+              style={{ letterSpacing: "-0.005em" }}
             >
-              <span className="relative z-10">Free Trial</span>
-              <ArrowRight size={14} className="relative z-10 transition-transform group-hover:translate-x-0.5" />
-              <span
-                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
-                style={{
-                  background:
-                    "linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.28) 50%, transparent 70%)",
-                  transitionTimingFunction: "var(--ease-out-expo)",
-                }}
-                aria-hidden
-              />
+              <span>Free trial</span>
+              <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" strokeWidth={2} />
             </Link>
           </Magnetic>
         </div>
@@ -221,28 +208,22 @@ function DropdownTrigger({
             transition={{ type: "spring", stiffness: 380, damping: 26, mass: 0.6 }}
             className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50 min-w-[320px]"
           >
-            <div
-              className="rounded-2xl p-2 glass-strong"
-              style={{ boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(167,139,250,0.18)" }}
-            >
-              {items.map((item) => (
+            <div className="rounded-[20px] py-2 glass-panel min-w-[320px]">
+              {items.map((item, i) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                  className={`group flex items-baseline gap-4 px-5 py-3 hover:bg-white/[0.04] transition-colors ${i > 0 ? "border-t border-[rgba(167,139,250,0.08)]" : ""}`}
                 >
-                  <span className="grid place-items-center w-9 h-9 rounded-lg bg-gradient-to-br from-[var(--color-p-400)]/20 to-[var(--color-p-400)]/5 border border-[var(--color-p-400)]/20 text-[var(--color-p-300)] shrink-0">
-                    <DotIcon />
-                  </span>
-                  <span className="flex flex-col">
-                    <span className="text-white font-medium text-[14px] group-hover:text-[var(--color-p-200)] transition-colors">
+                  <span className="flex-1 flex flex-col">
+                    <span className="text-white font-medium text-[14px] tracking-[-0.005em] group-hover:text-[var(--color-p-100)] transition-colors">
                       {item.label}
                     </span>
-                    <span className="text-[var(--color-ink-mute)] text-xs leading-snug mt-0.5">
+                    <span className="text-[var(--color-ink-mute)] text-[12px] leading-snug mt-1">
                       {item.description}
                     </span>
                   </span>
-                  <ArrowRight size={14} className="ml-auto self-center text-[var(--color-ink-faint)] group-hover:text-[var(--color-p-300)] group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <ArrowRight size={13} className="self-center text-[var(--color-ink-faint)] group-hover:text-[var(--color-p-300)] group-hover:translate-x-0.5 transition-all shrink-0" strokeWidth={1.8} />
                 </Link>
               ))}
             </div>
@@ -253,10 +234,3 @@ function DropdownTrigger({
   );
 }
 
-function DotIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden>
-      <circle cx="6" cy="6" r="2.5" />
-    </svg>
-  );
-}
