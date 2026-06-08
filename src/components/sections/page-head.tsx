@@ -24,7 +24,7 @@ export function PageHead({ eyebrow, title, sub, glow = "violet" }: PageHeadProps
   const ref = useRef<HTMLElement>(null);
 
   return (
-    <section ref={ref} className="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+    <section ref={ref} className="relative pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
       <SectionAmbient targetRef={ref} glow={glow} intensity={1} />
 
       {/* Hairline grid backdrop, subtle */}
@@ -84,16 +84,16 @@ export function PageHead({ eyebrow, title, sub, glow = "violet" }: PageHeadProps
  */
 export function SectionHead({ eyebrow, title, sub }: PageHeadProps) {
   return (
-    <div className="grid-edit mb-16 md:mb-20">
+    <div className="grid-edit mb-10 md:mb-14">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "0px 0px -10% 0px" }}
         transition={{ duration: 0.75, ease: EASE }}
-        className="col-span-12 lg:col-span-7"
+        className={`col-span-12 ${sub ? "lg:col-span-7" : "lg:col-span-10"}`}
       >
         <div className="kicker mb-5">{eyebrow}</div>
-        <h2 className="editorial-statement balance max-w-[22ch]">{title}</h2>
+        <h2 className={`editorial-statement balance ${sub ? "max-w-[22ch]" : "max-w-[28ch]"}`}>{title}</h2>
       </motion.div>
       {sub && (
         <motion.p

@@ -144,7 +144,7 @@ function WorldMap() {
             <text
               x={p.x} y={p.y - 14}
               textAnchor="middle"
-              fontFamily="JetBrains Mono, monospace"
+              style={{ fontFamily: "var(--font-geist-mono), ui-monospace, monospace" }}
               fontSize="9"
               letterSpacing="0.04em"
               fill="#FAF7FF"

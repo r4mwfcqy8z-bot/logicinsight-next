@@ -138,10 +138,10 @@ function TierCard({
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
       animate={{
-        scale: isHovered ? 1.06 : featured ? 1.04 : 1,
-        y: isHovered ? -16 : featured ? -16 : 0,
-        opacity: isDimmed ? 0.55 : 1,
-        filter: isDimmed ? "blur(1.5px)" : "blur(0px)",
+        scale: isHovered ? 1.025 : featured ? 1.015 : 1,
+        y: isHovered ? -14 : featured ? -14 : 0,
+        opacity: isDimmed ? 0.6 : 1,
+        filter: isDimmed ? "blur(1px)" : "blur(0px)",
       }}
       onPointerEnter={() => !reduce && onHover()}
       onPointerLeave={onLeave}
@@ -248,7 +248,7 @@ function TierCard({
 function PricingGrid() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   return (
-    <div className="grid md:grid-cols-3 gap-5 md:gap-6 items-stretch">
+    <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-stretch pt-6 md:pt-8">
       {TIERS.map((t, i) => (
         <TierCard
           key={t.name}

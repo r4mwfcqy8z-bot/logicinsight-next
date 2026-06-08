@@ -148,7 +148,7 @@ function RadarChart() {
             x={p.x} y={p.y}
             textAnchor="middle"
             dominantBaseline="middle"
-            fontFamily="JetBrains Mono, monospace"
+            style={{ fontFamily: "var(--font-geist-mono), ui-monospace, monospace" }}
             fontSize="10"
             letterSpacing="0.04em"
             fill="#837AA0"

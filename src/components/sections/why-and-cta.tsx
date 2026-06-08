@@ -13,14 +13,14 @@ const FOUNDERS = [
   {
     initials: "DL",
     name: "David Lira",
-    role: "Co-Founder · CEO / COO",
-    bio: "Two decades running and selling infrastructure in regulated environments. Decides what we ship and to whom.",
+    role: "Co-Founder · Principal Platform Architect",
+    bio: "Designed the Overwatch data path. Writes the editorial. Holds the line on evidence-grounded telemetry.",
   },
   {
     initials: "JR",
     name: "Jason Richmond",
-    role: "Co-Founder · Principal Platform Architect",
-    bio: "Designed the Overwatch data path. Writes the editorial. Holds the line on evidence-grounded telemetry.",
+    role: "Co-Founder · CEO / COO",
+    bio: "Two decades running and selling infrastructure in regulated environments. Decides what we ship and to whom.",
   },
 ];
 
