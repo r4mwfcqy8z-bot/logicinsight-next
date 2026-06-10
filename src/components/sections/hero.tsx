@@ -89,8 +89,8 @@ export function Hero() {
             style={{ marginTop: "clamp(1.25rem, 3vh, 2.5rem)" }}
           >
             <p className="editorial-sub max-w-[42ch] mb-8">
-              One appliance. Full-stack visibility across Nutanix clusters, hardware, network devices,
-              and backups, with ML-driven anomaly detection and optional Datadog or Grafana forwarding.
+              One local appliance. Full-stack visibility across clusters, hardware, network, and backups,
+              with ML-driven anomaly detection.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -104,19 +104,6 @@ export function Hero() {
               <Link href="/demo" className="btn-ghost">
                 <span>Book a demo</span>
               </Link>
-            </div>
-          </motion.div>
-
-          {/* Edge meta, bottom-right, anchors the scene with editorial restraint. */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.95 }}
-            className="hidden lg:flex col-span-12 lg:col-start-11 lg:col-span-2 self-end justify-end"
-          >
-            <div className="section-mark text-right leading-[1.6]">
-              Local appliance<br />
-              Your network, only
             </div>
           </motion.div>
         </div>

@@ -115,7 +115,7 @@ const DOMAINS: Domain[] = [
   },
 ];
 
-export function CoverageExplorer() {
+export function CoverageExplorer({ heading, blurb }: { heading?: React.ReactNode; blurb?: string } = {}) {
   const [active, setActive] = useState(0);
   const d = DOMAINS[active];
   const Icon = d.icon;
@@ -123,6 +123,18 @@ export function CoverageExplorer() {
   return (
     <section className="relative py-16 md:py-24">
       <div className="editorial-shell">
+        {heading && (
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="mb-12 md:mb-16 max-w-[24ch]"
+          >
+            <h2 className="editorial-statement balance">{heading}</h2>
+            {blurb && <p className="mt-6 editorial-sub max-w-[52ch]">{blurb}</p>}
+          </motion.div>
+        )}
         <div className="grid grid-cols-12 gap-5 lg:gap-6">
           {/* Selector rail */}
           <div className="col-span-12 lg:col-span-4 flex flex-col gap-2.5">
