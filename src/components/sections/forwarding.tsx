@@ -191,7 +191,7 @@ export function Forwarding() {
                     x={rectX} y={p.y - 22} width={BOX_W} height="44" rx="6"
                     fill="rgba(20, 16, 42, 0.85)" stroke="rgba(167,139,250,0.32)" strokeWidth="1"
                   />
-                  <text x={rectX + 16} y={p.y + 4.5} fontSize="13" fontFamily="var(--font-sans), Inter, sans-serif" fontWeight="500" fill="#F4F1EA">
+                  <text x={rectX + 16} y={p.y + 4.5} fontSize="13" fontFamily="var(--font-sans), system-ui, sans-serif" fontWeight="500" fill="#F4F1EA">
                     {s.label}
                   </text>
                 </motion.g>
@@ -215,13 +215,13 @@ export function Forwarding() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 style={{ transformOrigin: `${coreCenter.x}px ${coreCenter.y}px` }}
               />
-              <text x={coreCenter.x} y={coreCenter.y - 18} textAnchor="middle" fontSize="22" fontWeight="700" fontFamily="var(--font-sans), Inter, sans-serif" letterSpacing="0.04em" fill="#ECE3FF">
+              <text x={coreCenter.x} y={coreCenter.y - 18} textAnchor="middle" fontSize="22" fontWeight="700" fontFamily="var(--font-sans), system-ui, sans-serif" letterSpacing="0.04em" fill="#ECE3FF">
                 OVERWATCH
               </text>
-              <text x={coreCenter.x} y={coreCenter.y + 4} textAnchor="middle" fontSize="10" fontFamily="var(--font-mono), JetBrains Mono, monospace" letterSpacing="0.10em" fill="#837AA0">
+              <text x={coreCenter.x} y={coreCenter.y + 4} textAnchor="middle" fontSize="10" fontFamily="var(--font-mono), ui-monospace, monospace" letterSpacing="0.10em" fill="#837AA0">
                 One local appliance
               </text>
-              <g fontFamily="var(--font-mono), JetBrains Mono, monospace" fontSize="9" fill="#BC9CFF" textAnchor="middle" letterSpacing="0.16em">
+              <g fontFamily="var(--font-mono), ui-monospace, monospace" fontSize="9" fill="#BC9CFF" textAnchor="middle" letterSpacing="0.16em">
                 <text x={coreCenter.x - 60} y={coreCenter.y + 38}>ML</text>
                 <text x={coreCenter.x} y={coreCenter.y + 38}>ANOMALY</text>
                 <text x={coreCenter.x + 60} y={coreCenter.y + 38}>FORECAST</text>
@@ -250,14 +250,14 @@ export function Forwarding() {
                   <text
                     x={rectX + 16}
                     y={p.y - (d.opt ? 4 : -4.5)}
-                    fontSize="13" fontFamily="var(--font-sans), Inter, sans-serif" fontWeight="500" fill="#F4F1EA"
+                    fontSize="13" fontFamily="var(--font-sans), system-ui, sans-serif" fontWeight="500" fill="#F4F1EA"
                   >
                     {d.label}
                   </text>
                   {d.opt && (
                     <text
                       x={rectX + 16} y={p.y + 14}
-                      fontSize="9" fontStyle="italic" fontFamily="var(--font-sans), Inter, sans-serif"
+                      fontSize="9" fontStyle="italic" fontFamily="var(--font-sans), system-ui, sans-serif"
                       fill="#FF6B9C" letterSpacing="0.04em"
                     >
                       optional, toggle per stream
@@ -267,8 +267,8 @@ export function Forwarding() {
               );
             })}
 
-            <text x={sourceColX} y={36} textAnchor="middle" fontFamily="var(--font-mono), JetBrains Mono, monospace" fontSize="10" letterSpacing="0.18em" fill="#837AA0">SOURCES (LOCAL)</text>
-            <text x={destColX}   y={36} textAnchor="middle" fontFamily="var(--font-mono), JetBrains Mono, monospace" fontSize="10" letterSpacing="0.18em" fill="#837AA0">DESTINATIONS</text>
+            <text x={sourceColX} y={36} textAnchor="middle" fontFamily="var(--font-mono), ui-monospace, monospace" fontSize="10" letterSpacing="0.18em" fill="#837AA0">SOURCES (LOCAL)</text>
+            <text x={destColX}   y={36} textAnchor="middle" fontFamily="var(--font-mono), ui-monospace, monospace" fontSize="10" letterSpacing="0.18em" fill="#837AA0">DESTINATIONS</text>
           </svg>
         </div>
 
