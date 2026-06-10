@@ -24,7 +24,7 @@ export function PageHead({ eyebrow, title, sub, glow = "violet" }: PageHeadProps
   const ref = useRef<HTMLElement>(null);
 
   return (
-    <section ref={ref} className="relative pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
+    <section ref={ref} className="relative pt-28 md:pt-36 pb-14 md:pb-20 overflow-x-clip">
       <SectionAmbient targetRef={ref} glow={glow} intensity={1} />
 
       {/* Hairline grid backdrop, subtle */}
@@ -117,19 +117,21 @@ export function SectionHead({ eyebrow, title, sub }: PageHeadProps) {
  */
 export function StatementBand({ eyebrow, title, sub }: PageHeadProps) {
   return (
-    <div className="relative overflow-hidden rounded-[28px] matte depth-2 px-8 md:px-14 py-14 md:py-20">
-      <div
-        aria-hidden
-        className="absolute -right-24 -bottom-28 w-[380px] h-[380px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(167,139,250,0.16), transparent 65%)" }}
-      />
-      <div className="grid-edit items-center relative">
+    <div className="relative rounded-[28px] matte depth-2 px-8 md:px-14 py-14 md:py-20">
+      {/* Glow lives in its own clipped layer so the panel never clips the heading. */}
+      <div aria-hidden className="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+        <div
+          className="absolute -right-24 -bottom-28 w-[380px] h-[380px] rounded-full blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(167,139,250,0.16), transparent 65%)" }}
+        />
+      </div>
+      <div className="grid-edit items-start relative">
         <div className="col-span-12 lg:col-span-7">
           {eyebrow && <div className="kicker mb-5">{eyebrow}</div>}
           <h2 className="editorial-statement balance">{title}</h2>
         </div>
         {sub && (
-          <p className="col-span-12 lg:col-start-9 lg:col-span-4 self-end editorial-sub mt-6 lg:mt-0">
+          <p className="col-span-12 lg:col-start-8 lg:col-span-5 self-start editorial-sub mt-6 lg:mt-2">
             {sub}
           </p>
         )}

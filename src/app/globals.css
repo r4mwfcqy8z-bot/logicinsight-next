@@ -212,18 +212,17 @@ body::before {
    Static editorial gradient — used sparingly, no animation pan.
    The animated rainbow recipe was an AI tell; killed.
 */
+/*
+   Was background-clip:text gradient — that clips italic descenders ("g","p","y"
+   bottoms shear off) on every heading it touches. Now a solid accent that pairs
+   cleanly with the large upright text and matches the emphasis used elsewhere.
+*/
 .gradient-text {
-  background: linear-gradient(96deg, #ECE3FF 0%, #BC9CFF 38%, #A78BFA 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-p-200);
 }
 
 .gradient-text-warm {
-  background: linear-gradient(96deg, #F4F1EA 0%, #FFA3C2 55%, #BC9CFF 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #FFB3CC;
 }
 
 /* Editorial body. */
