@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { Boxes, Server, Network, ShieldCheck, Activity, type LucideIcon } from "lucide-react";
+import { CursorParallax } from "@/components/wow/cursor-parallax";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -81,6 +82,52 @@ function RingMotif({ color, reduce }: { color: string; reduce: boolean }) {
       <div className="absolute inset-0 grid place-items-center" aria-hidden>
         <div className="w-2.5 h-2.5 rounded-full" style={{ background: color, boxShadow: `0 0 28px 4px ${color}` }} />
       </div>
+    </div>
+  );
+}
+
+/**
+ * The luminous "stack core" for the intro: all five layer rings as one breathing,
+ * slowly-rotating halo. Center stays open and dark so the headline reads inside it.
+ */
+function StackCore({ reduce }: { reduce: boolean }) {
+  const colors = LAYERS.map((l) => l.color);
+  return (
+    <div className="relative aspect-square w-[min(92vw,760px)]">
+      <motion.div
+        className="absolute inset-[26%] rounded-full blur-[90px]"
+        style={{ background: "radial-gradient(circle, rgba(167,139,250,0.35), transparent 70%)" }}
+        animate={reduce ? {} : { scale: [1, 1.12, 1], opacity: [0.65, 1, 0.65] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+      />
+      <motion.div
+        className="absolute inset-0 will-change-transform"
+        animate={reduce ? {} : { rotate: 360 }}
+        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+      >
+        <svg viewBox="0 0 200 200" className="w-full h-full" aria-hidden>
+          {colors.map((c, i) => {
+            const r = 58 + i * 9;
+            return (
+              <g key={c}>
+                <circle cx="100" cy="100" r={r} fill="none" stroke={c} strokeOpacity={0.55 - i * 0.06} strokeWidth="0.5" strokeDasharray={i % 2 ? "1.5 7" : undefined} />
+                <circle cx="100" cy={100 - r} r="1.5" fill={c} />
+              </g>
+            );
+          })}
+        </svg>
+      </motion.div>
+      <motion.div
+        className="absolute inset-0 will-change-transform"
+        animate={reduce ? {} : { rotate: -360 }}
+        transition={{ duration: 140, repeat: Infinity, ease: "linear" }}
+      >
+        <svg viewBox="0 0 200 200" className="w-full h-full" aria-hidden>
+          <circle cx="100" cy="100" r="50" fill="none" stroke="#D7C2FF" strokeOpacity="0.2" strokeWidth="0.4" />
+          <circle cx="150" cy="100" r="1.2" fill="#D7C2FF" fillOpacity="0.85" />
+        </svg>
+      </motion.div>
     </div>
   );
 }
@@ -170,14 +217,28 @@ export function StackDescent() {
         </div>
       )}
 
-      {/* Intro */}
-      <div className="relative z-10 editorial-shell pt-28 md:pt-36 pb-4">
+      {/* Intro: a full-screen luminous stack core with the headline living inside it. */}
+      <div className="relative z-10 min-h-[100dvh] grid place-items-center overflow-hidden">
+        <div className="absolute inset-0 grid place-items-center pointer-events-none">
+          {reduce ? (
+            <StackCore reduce={reduce} />
+          ) : (
+            <CursorParallax strength={16} className="grid place-items-center">
+              <StackCore reduce={reduce} />
+            </CursorParallax>
+          )}
+        </div>
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(closest-side at 50% 50%, rgba(8,6,14,0.74), rgba(8,6,14,0.22) 60%, transparent 80%)" }}
+        />
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 24 }}
+          initial={reduce ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="max-w-[20ch]"
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 1, ease: EASE }}
+          className="relative z-10 text-center px-6 max-w-[22ch]"
         >
           <h2 className="editorial-statement balance">
             Descend the{" "}
@@ -185,7 +246,7 @@ export function StackDescent() {
               whole stack.
             </span>
           </h2>
-          <p className="mt-6 editorial-sub max-w-[50ch]">
+          <p className="mt-6 editorial-sub mx-auto max-w-[42ch]">
             Converged infrastructure fails together. Overwatch watches it together, one layer at a time, in a single view.
           </p>
         </motion.div>
