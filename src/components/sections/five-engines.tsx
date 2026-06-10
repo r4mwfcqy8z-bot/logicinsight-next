@@ -404,37 +404,24 @@ export function FiveEngines() {
 
   return (
     <section className="relative py-28 md:py-40">
-      {/* Editorial header, not centered, anchored to grid. */}
-      <div className="editorial-shell mb-20 md:mb-28">
-        <div className="grid-edit">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-            transition={{ duration: 0.8, ease: EASE }}
-            className="col-span-12 lg:col-span-7"
-          >
-            <div className="mb-7">
-              <span className="kicker">Inside the appliance</span>
-            </div>
-            <h2 className="editorial-statement balance">
-              <span className="block">Five engines.</span>
-              <span className="block italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
-                One console.
-              </span>
-              <span className="block">Here&apos;s what&apos;s inside.</span>
-            </h2>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.15 }}
-            className="col-span-12 lg:col-start-9 lg:col-span-4 self-end editorial-sub max-w-[40ch]"
-          >
+      {/* Clean centered header: headline + body stacked, no eyebrow, no floating corner. */}
+      <div className="editorial-shell mb-14 md:mb-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          transition={{ duration: 0.8, ease: EASE }}
+        >
+          <h2 className="editorial-statement balance mx-auto max-w-[18ch]">
+            Five engines.{" "}
+            <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
+              One console.
+            </span>
+          </h2>
+          <p className="mt-7 editorial-sub mx-auto max-w-[54ch]">
             A local operations stack that collects, enriches, analyzes, stores, and publishes infrastructure signals from one place.
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </div>
 
       {/* Sticky scroll-stack of 5 engine stages. */}

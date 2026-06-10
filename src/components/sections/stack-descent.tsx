@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { Boxes, Server, Network, ShieldCheck, Activity, type LucideIcon } from "lucide-react";
-import { CursorParallax } from "@/components/wow/cursor-parallax";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -104,16 +103,23 @@ function StackCore({ reduce }: { reduce: boolean }) {
       <motion.div
         className="absolute inset-0 will-change-transform"
         animate={reduce ? {} : { rotate: 360 }}
-        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full" aria-hidden>
           {colors.map((c, i) => {
-            const r = 58 + i * 9;
+            const r = 60 + i * 9;
             return (
-              <g key={c}>
-                <circle cx="100" cy="100" r={r} fill="none" stroke={c} strokeOpacity={0.55 - i * 0.06} strokeWidth="0.5" strokeDasharray={i % 2 ? "1.5 7" : undefined} />
-                <circle cx="100" cy={100 - r} r="1.5" fill={c} />
-              </g>
+              <circle
+                key={c}
+                cx="100"
+                cy="100"
+                r={r}
+                fill="none"
+                stroke={c}
+                strokeOpacity={0.2 - i * 0.022}
+                strokeWidth="0.5"
+                strokeDasharray={i % 2 ? "1.5 8" : undefined}
+              />
             );
           })}
         </svg>
@@ -121,11 +127,10 @@ function StackCore({ reduce }: { reduce: boolean }) {
       <motion.div
         className="absolute inset-0 will-change-transform"
         animate={reduce ? {} : { rotate: -360 }}
-        transition={{ duration: 140, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full" aria-hidden>
-          <circle cx="100" cy="100" r="50" fill="none" stroke="#D7C2FF" strokeOpacity="0.2" strokeWidth="0.4" />
-          <circle cx="150" cy="100" r="1.2" fill="#D7C2FF" fillOpacity="0.85" />
+          <circle cx="100" cy="100" r="52" fill="none" stroke="#D7C2FF" strokeOpacity="0.12" strokeWidth="0.4" />
         </svg>
       </motion.div>
     </div>
@@ -217,36 +222,30 @@ export function StackDescent() {
         </div>
       )}
 
-      {/* Intro: a full-screen luminous stack core with the headline living inside it. */}
+      {/* Intro: a calm luminous field; one bold statement centered cleanly within it. */}
       <div className="relative z-10 min-h-[100dvh] grid place-items-center overflow-hidden">
         <div className="absolute inset-0 grid place-items-center pointer-events-none">
-          {reduce ? (
-            <StackCore reduce={reduce} />
-          ) : (
-            <CursorParallax strength={16} className="grid place-items-center">
-              <StackCore reduce={reduce} />
-            </CursorParallax>
-          )}
+          <StackCore reduce={reduce} />
         </div>
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(closest-side at 50% 50%, rgba(8,6,14,0.74), rgba(8,6,14,0.22) 60%, transparent 80%)" }}
+          style={{ background: "radial-gradient(closest-side at 50% 50%, rgba(8,6,14,0.92), rgba(8,6,14,0.45) 52%, transparent 80%)" }}
         />
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 1, ease: EASE }}
-          className="relative z-10 text-center px-6 max-w-[22ch]"
+          className="relative z-10 text-center px-6"
         >
-          <h2 className="editorial-statement balance">
+          <h2 className="editorial-statement balance mx-auto max-w-[15ch]">
             Descend the{" "}
             <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.04em" }}>
               whole stack.
             </span>
           </h2>
-          <p className="mt-6 editorial-sub mx-auto max-w-[42ch]">
+          <p className="mt-6 editorial-sub mx-auto max-w-[46ch]">
             Converged infrastructure fails together. Overwatch watches it together, one layer at a time, in a single view.
           </p>
         </motion.div>
