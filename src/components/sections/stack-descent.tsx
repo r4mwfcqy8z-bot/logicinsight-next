@@ -116,8 +116,8 @@ function StackCore({ reduce }: { reduce: boolean }) {
                 r={r}
                 fill="none"
                 stroke={c}
-                strokeOpacity={0.2 - i * 0.022}
-                strokeWidth="0.5"
+                strokeOpacity={0.36 - i * 0.03}
+                strokeWidth="0.65"
                 strokeDasharray={i % 2 ? "1.5 8" : undefined}
               />
             );
@@ -130,7 +130,7 @@ function StackCore({ reduce }: { reduce: boolean }) {
         transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full" aria-hidden>
-          <circle cx="100" cy="100" r="52" fill="none" stroke="#D7C2FF" strokeOpacity="0.12" strokeWidth="0.4" />
+          <circle cx="100" cy="100" r="52" fill="none" stroke="#D7C2FF" strokeOpacity="0.2" strokeWidth="0.5" />
         </svg>
       </motion.div>
     </div>
