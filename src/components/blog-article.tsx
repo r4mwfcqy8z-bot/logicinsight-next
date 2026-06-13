@@ -6,6 +6,8 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SectionAmbient } from "@/components/wow/scroll-ambient";
 import { ScrollProgressRail } from "@/components/wow/scroll-progress-rail";
+import { JsonLd } from "@/components/seo/json-ld";
+import { articleLd, breadcrumbLd } from "@/lib/structured-data";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -25,6 +27,7 @@ interface NextRef {
 
 interface BlogArticleProps {
   title: string;
+  slug: string;
   description: string;
   category: string;
   readMin: string;
@@ -35,6 +38,7 @@ interface BlogArticleProps {
 
 export function BlogArticle({
   title,
+  slug,
   description,
   category,
   readMin,
@@ -46,6 +50,16 @@ export function BlogArticle({
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleLd({ title, description, path: `/blog/${slug}`, section: category }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: title, path: `/blog/${slug}` },
+          ]),
+        ]}
+      />
       <ScrollProgressRail />
 
       {/* Editorial article hero. */}

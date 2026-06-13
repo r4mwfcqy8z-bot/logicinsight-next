@@ -5,6 +5,7 @@ import { article } from "@/content/blog/nutanix-monitoring-checklist";
 export const metadata = {
   title: article.title,
   description: article.description,
+  alternates: { canonical: `/blog/${article.slug}` },
 };
 
 export default function ArticlePage() {
@@ -12,6 +13,7 @@ export default function ArticlePage() {
     <>
       <BlogArticle
         title={article.title}
+        slug={article.slug}
         description={article.description}
         category={article.category}
         readMin={article.readMin}
