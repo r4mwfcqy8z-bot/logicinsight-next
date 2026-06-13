@@ -37,7 +37,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Logic Insight", url: "https://logicinsight.io" }],
   creator: "Logic Insight",
   publisher: "Logic Insight",
-  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,

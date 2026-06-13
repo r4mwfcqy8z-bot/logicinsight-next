@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import PricingView from "./view";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPageLd } from "@/lib/structured-data";
+import { PRICING_FAQ } from "@/content/faq";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -9,5 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <PricingView />;
+  return (
+    <>
+      <JsonLd data={faqPageLd(PRICING_FAQ)} />
+      <PricingView />
+    </>
+  );
 }

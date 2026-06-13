@@ -7,6 +7,7 @@ import { PageHead, SectionHead } from "@/components/sections/page-head";
 import { Magnetic } from "@/components/magnetic";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 import { SpotlightCard } from "@/components/wow/spotlight-card";
+import { MAAS_FAQ as FAQ } from "@/content/faq";
 import { Boxes, Cpu, AlertCircle, Server, Eye, Bell, Activity, FileText, Settings, Building2, Users, ShieldCheck, MessageSquare, Mail, Phone, Webhook, Hash } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -102,13 +103,7 @@ const BUILT_FOR = [
   { icon: <ShieldCheck size={18} strokeWidth={1.5} />, name: "Compliance-Driven Orgs",   body: "Organizations requiring documented monitoring, audit trails, and regular health assessments for compliance and governance frameworks." },
 ];
 
-const FAQ = [
-  { q: "Does the Overwatch appliance leave my network?", a: "No. The appliance runs entirely inside your environment. Logic Insight operates it via secured, audited access. Telemetry stays local unless you explicitly enable forwarding." },
-  { q: "What if I already use Datadog or Grafana?",       a: "We integrate with both. Overwatch enriches and filters Nutanix telemetry, then forwards to whichever destination you already operate." },
-  { q: "Can I start with Essentials and upgrade later?",   a: "Yes. Tier changes take effect on the next billing cycle. We retain your dashboards, baselines, and rules across upgrades." },
-  { q: "What happens if I cancel?",                       a: "You keep the appliance and the data it has collected. Logic Insight stops day-to-day operations and you transition to Self-Hosted, or take a managed offboarding to another tool." },
-  { q: "How is this different from just buying Datadog directly?", a: "Datadog is a great destination. We are the Nutanix-aware ingestion + analysis layer that gets the right signal there, with ML baselines and forecasting that generic agents do not provide." },
-];
+// FAQ content lives in src/content/faq.ts (MAAS_FAQ), imported above as FAQ.
 
 const ALERT_CHANNELS = [
   { name: "Slack",     icon: <Hash size={14} strokeWidth={1.5} /> },

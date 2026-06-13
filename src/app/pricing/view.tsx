@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Magnetic } from "@/components/magnetic";
 import { FinalCTA } from "@/components/sections/why-and-cta";
+import { PRICING_FAQ as FAQ } from "@/content/faq";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -76,14 +77,7 @@ const COMPARISON: [string, string, string, string][] = [
   ["Best for", "In-house expertise", "Hands-off operations", "Existing platform buyers"],
 ];
 
-const FAQ = [
-  { q: "Are there add-on licenses or extra fees for specific integrations?", a: "No. Every integration, Prism, Redfish, IPMI, SNMP, IPFIX/NetFlow, HYCU, Datadog forwarding, Grafana forwarding, is included in the per-core price. Pricing is per-core, full stop." },
-  { q: "Can I combine models, for example self-hosted plus MaaS?", a: "Yes. Many customers run Self-Hosted in dev and non-prod and MaaS for production. We keep the tooling and data model consistent across environments." },
-  { q: "How are Nutanix cores counted?", a: "Total licensed physical cores across your Nutanix clusters. Hyper-threading and logical cores are not counted. Volume discounts are available for 500+ cores." },
-  { q: "Is there a minimum commitment?", a: "Monthly billing has no minimum term. Annual terms are available if you want pricing predictability and simpler procurement." },
-  { q: "What if my cluster or core count changes?", a: "Counts are reconciled monthly. Scale up immediately; reductions take effect at the next billing cycle." },
-  { q: "Do marketplace purchases include the full platform?", a: "Yes. The same product runs across all three paths. The differences are procurement, deployment, and support, not feature access." },
-];
+// FAQ content lives in src/content/faq.ts (PRICING_FAQ), imported above as FAQ.
 
 const INTEGRATIONS = "Prism, Redfish, IPMI, SNMP, IPFIX, NetFlow, HYCU, Datadog, Grafana";
 

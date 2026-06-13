@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import MaaSView from "./view";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPageLd } from "@/lib/structured-data";
+import { MAAS_FAQ } from "@/content/faq";
 
 export const metadata: Metadata = {
   title: "Monitoring as a Service",
@@ -9,5 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <MaaSView />;
+  return (
+    <>
+      <JsonLd data={faqPageLd(MAAS_FAQ)} />
+      <MaaSView />
+    </>
+  );
 }

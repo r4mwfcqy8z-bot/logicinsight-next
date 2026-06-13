@@ -8,10 +8,18 @@ import { WhyLogicInsight, FinalCTA } from "@/components/sections/why-and-cta";
 import { DashboardPanel } from "@/components/dashboards/dashboard-panel";
 import { HomeFAQ } from "@/components/sections/home-faq";
 import { HomepageLoader } from "@/components/wow/homepage-loader";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPageLd } from "@/lib/structured-data";
+import { HOME_FAQ } from "@/content/faq";
+
+export const metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqPageLd(HOME_FAQ)} />
       <HomepageLoader />
       <Hero />
       <TrustMarquee />
