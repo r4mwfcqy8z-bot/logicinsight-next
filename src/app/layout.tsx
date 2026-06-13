@@ -115,13 +115,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[300] focus:rounded-lg focus:bg-[var(--color-p-500)] focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        >
+          Skip to content
+        </a>
         <LenisProvider />
         <ScrollAmbient intensity={0.85} />
         <div className="grain" aria-hidden />
         <div className="vignette" aria-hidden />
         <Nav />
         <CommandPalette />
-        <main className="relative z-[2]">
+        <main id="main-content" tabIndex={-1} className="relative z-[2] outline-none">
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
