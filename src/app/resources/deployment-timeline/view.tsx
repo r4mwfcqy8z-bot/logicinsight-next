@@ -150,7 +150,7 @@ export default function DeploymentTimelineView() {
             }
           />
 
-          <div ref={railRef} className="relative max-w-[860px]">
+          <div ref={railRef} className="relative max-w-[860px] mx-auto">
             {/* Static rail track */}
             <span aria-hidden className="absolute left-[18px] md:left-[26px] top-2 bottom-2 w-px bg-[rgba(167,139,250,0.14)]" />
             {/* Scroll-progress fill */}

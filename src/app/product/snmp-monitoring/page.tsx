@@ -153,7 +153,7 @@ export default function SNMPPage() {
             }
             sub="Click any device to get health metrics, port-level traffic, sensor data, system info, alerts, logs, and configuration in one place. No tab-switching across vendor consoles."
           />
-          <ul className="grid md:grid-cols-2 gap-0 border-t border-[rgba(167,139,250,0.16)] max-w-[920px]">
+          <ul className="grid md:grid-cols-2 gap-0 border-t border-[rgba(167,139,250,0.16)] max-w-[920px] mx-auto">
             {DEEP_DIVE.map((it, i) => (
               <li
                 key={it}
@@ -180,7 +180,7 @@ export default function SNMPPage() {
             }
             sub="Every interface gets traffic charts with ingress and egress overlays, error counters, and operational state. Hover any time range to compare patterns across days, weeks, or months."
           />
-          <ul className="grid md:grid-cols-2 gap-0 border-t border-[rgba(167,139,250,0.16)] max-w-[920px]">
+          <ul className="grid md:grid-cols-2 gap-0 border-t border-[rgba(167,139,250,0.16)] max-w-[920px] mx-auto">
             {PORT.map((it, i) => (
               <li
                 key={it}
@@ -224,7 +224,7 @@ export default function SNMPPage() {
             }
             sub="Overwatch ships with vendor profiles for every major network platform. Adding a new device family is a YAML file, not a custom code drop or vendor support ticket."
           />
-          <div className="flex flex-wrap gap-2.5 max-w-[920px]">
+          <div className="flex flex-wrap gap-2.5 max-w-[920px] mx-auto justify-center">
             {VENDORS.map((v) => (
               <span
                 key={v}
