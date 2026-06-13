@@ -34,53 +34,45 @@ export function WhyLogicInsight() {
   return (
     <section className="relative py-28 md:py-40 overflow-hidden">
       <div className="editorial-shell">
-        {/* Header row, editorial spread. */}
-        <div className="grid-edit mb-20 md:mb-24">
-          <motion.div
+        {/* Centered header. */}
+        <div className="mb-12 md:mb-16 text-center">
+          <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px 0px -10% 0px" }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="col-span-12 lg:col-span-7"
+            className="editorial-statement balance mx-auto max-w-[24ch]"
           >
-            <div className="mb-7">
-              <span className="kicker">Why Logic Insight exists</span>
-            </div>
-            <h2 className="editorial-statement balance">
-              Built by engineers who spent{" "}
-              <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
-                a decade
-              </span>{" "}
-              managing Nutanix at scale.
-            </h2>
-          </motion.div>
-
-          {/* 3 stats, editorial sidebar, NOT a separate row. */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.15 }}
-            className="col-span-12 lg:col-start-9 lg:col-span-4 lg:pt-12 space-y-6"
-          >
-            {STATS.map((s, i) => (
-              <div
-                key={s.label}
-                className={`flex items-baseline justify-between gap-6 ${i > 0 ? "border-t border-[rgba(167,139,250,0.16)] pt-6" : ""}`}
-              >
-                <span
-                  className="numeral text-[var(--color-ink)]"
-                  style={{ fontSize: "clamp(2rem, 3.6vw, 3.5rem)", lineHeight: 0.9 }}
-                >
-                  {s.num}
-                </span>
-                <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--color-ink-mute)] uppercase text-right max-w-[20ch] leading-[1.6]">
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </motion.div>
+            Built by engineers who spent{" "}
+            <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
+              a decade
+            </span>{" "}
+            managing Nutanix at scale.
+          </motion.h2>
         </div>
+
+        {/* Stats, clean centered 3-up panel. */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+          className="mb-20 md:mb-28 grid grid-cols-1 sm:grid-cols-3 max-w-[820px] mx-auto rounded-[24px] matte overflow-hidden"
+        >
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className={`px-6 py-8 text-center ${i > 0 ? "border-t sm:border-t-0 sm:border-l border-[rgba(167,139,250,0.16)]" : ""}`}
+            >
+              <div className="numeral text-[var(--color-ink)]" style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", lineHeight: 1 }}>
+                {s.num}
+              </div>
+              <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--color-ink-mute)] uppercase leading-[1.6] max-w-[22ch] mx-auto">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
 
         {/* Body run, editorial paragraphs, wide column. */}
         <div className="grid-edit mb-24 md:mb-32">

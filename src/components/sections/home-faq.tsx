@@ -70,7 +70,6 @@ export function HomeFAQ() {
             transition={{ duration: 0.75, ease: EASE }}
             className="col-span-12 lg:col-span-4 lg:sticky lg:top-32"
           >
-            <div className="kicker mb-5">Common questions</div>
             <h2 className="editorial-statement balance max-w-[14ch]">
               The short{" "}
               <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.04em" }}>

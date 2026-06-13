@@ -71,23 +71,21 @@ export function Forwarding() {
   return (
     <section className="relative py-28 md:py-40 overflow-hidden">
       <div className="editorial-shell">
-        {/* Header, left-aligned editorial. */}
-        <div className="grid-edit mb-16 md:mb-20">
-          <motion.div
+        {/* Centered header. */}
+        <div className="mb-14 md:mb-24 text-center">
+          <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px 0px -10% 0px" }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="col-span-12 lg:col-span-8"
+            className="editorial-statement balance mx-auto max-w-[24ch]"
           >
-            <h2 className="editorial-statement balance">
-              <span className="block">Replace console sprawl</span>
-              <span className="block italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
-                without replacing
-              </span>
-              <span className="block">the tools your team already trusts.</span>
-            </h2>
-          </motion.div>
+            Replace console sprawl{" "}
+            <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.045em" }}>
+              without replacing
+            </span>{" "}
+            the tools your team already trusts.
+          </motion.h2>
         </div>
 
         {/* Diagram in editorial emptiness, no glass-strong wrapper card. */}
