@@ -43,7 +43,6 @@ export default function FreeTrialPage() {
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}
               transition={{ duration: 0.8, ease: EASE }}
             >
-              <div className="kicker mb-6">What you get</div>
               <h2 className="editorial-lede balance mb-10 max-w-[20ch]">
                 What you{" "}
                 <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.04em" }}>

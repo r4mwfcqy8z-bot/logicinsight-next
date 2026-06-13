@@ -156,7 +156,7 @@ export default function AIAssistantPage() {
             }
             sub="From the inventory, click a VM and get an instant AI review: health, recent issues, capacity context, and recommendations."
           />
-          <div className="max-w-[640px]">
+          <div className="max-w-[640px] mx-auto">
             <div className="px-7 py-6 rounded-[20px] signature-glass flex items-center gap-5">
               <span className="grid place-items-center w-12 h-12 rounded-xl border border-[rgba(167,139,250,0.22)] text-[var(--color-p-300)] shrink-0">
                 <MousePointerClick size={22} strokeWidth={1.5} />

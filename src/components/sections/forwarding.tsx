@@ -219,11 +219,9 @@ export function Forwarding() {
               <text x={coreCenter.x} y={coreCenter.y + 4} textAnchor="middle" fontSize="10" fontFamily="var(--font-mono), ui-monospace, monospace" letterSpacing="0.10em" fill="#837AA0">
                 One local appliance
               </text>
-              <g fontFamily="var(--font-mono), ui-monospace, monospace" fontSize="9" fill="#BC9CFF" textAnchor="middle" letterSpacing="0.16em">
-                <text x={coreCenter.x - 60} y={coreCenter.y + 38}>ML</text>
-                <text x={coreCenter.x} y={coreCenter.y + 38}>ANOMALY</text>
-                <text x={coreCenter.x + 60} y={coreCenter.y + 38}>FORECAST</text>
-              </g>
+              <text x={coreCenter.x} y={coreCenter.y + 38} textAnchor="middle" fontFamily="var(--font-mono), ui-monospace, monospace" fontSize="9" fill="#BC9CFF" letterSpacing="0.16em">
+                ML · ANOMALY · FORECAST
+              </text>
             </motion.g>
 
             {/* Destination boxes, italic note for "optional". */}

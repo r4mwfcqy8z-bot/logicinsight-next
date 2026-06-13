@@ -7,7 +7,6 @@ import {
   CheckCircle2, ArrowRight, Cpu, Database,
 } from "lucide-react";
 import { PageHead, SectionHead } from "@/components/sections/page-head";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -180,7 +179,7 @@ export default function SecurityView() {
               </>
             }
           />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-12">
             {PILLARS.map((p, i) => {
               const Icon = p.icon;
               return (
@@ -190,22 +189,21 @@ export default function SecurityView() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                   transition={{ duration: 0.7, delay: i * 0.06, ease: EASE }}
+                  className="pt-7 border-t border-[rgba(167,139,250,0.16)]"
                 >
-                  <SpotlightCard glow="violet" className="h-full p-7 md:p-9 rounded-[24px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl text-[var(--color-p-300)] mb-6 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <h3 className="editorial-lede text-[var(--color-ink)] mb-3">{p.title}</h3>
-                    <p className="body-m text-[var(--color-ink-soft)] mb-6 max-w-[46ch]">{p.intro}</p>
-                    <ul className="grid gap-0 border-t border-[rgba(167,139,250,0.12)]">
-                      {p.items.map((it) => (
-                        <li key={it} className="flex items-start gap-3 py-3 border-b border-[rgba(167,139,250,0.10)] last:border-b-0">
-                          <CheckCircle2 size={15} strokeWidth={1.8} className="mt-1 shrink-0 text-[var(--color-p-400)]" />
-                          <span className="text-[0.9rem] text-[var(--color-ink-soft)] leading-[1.5]">{it}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </SpotlightCard>
+                  <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl text-[var(--color-p-300)] mb-6 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
+                    <Icon size={20} strokeWidth={1.5} />
+                  </span>
+                  <h3 className="editorial-lede text-[var(--color-ink)] mb-3">{p.title}</h3>
+                  <p className="body-m text-[var(--color-ink-soft)] mb-6 max-w-[46ch]">{p.intro}</p>
+                  <ul className="grid gap-0 border-t border-[rgba(167,139,250,0.12)]">
+                    {p.items.map((it) => (
+                      <li key={it} className="flex items-start gap-3 py-3 border-b border-[rgba(167,139,250,0.10)] last:border-b-0">
+                        <CheckCircle2 size={15} strokeWidth={1.8} className="mt-1 shrink-0 text-[var(--color-p-400)]" />
+                        <span className="text-[0.9rem] text-[var(--color-ink-soft)] leading-[1.5]">{it}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               );
             })}
@@ -216,7 +214,7 @@ export default function SecurityView() {
       {/* Posture 3-up */}
       <section className="relative py-16 md:py-24">
         <div className="editorial-shell">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10">
             {POSTURE.map((g, i) => (
               <motion.div
                 key={g.title}
@@ -224,7 +222,7 @@ export default function SecurityView() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                 transition={{ duration: 0.65, delay: i * 0.08, ease: EASE }}
-                className="rounded-[22px] matte p-7"
+                className="pt-6 border-t border-[rgba(167,139,250,0.16)]"
               >
                 <div className="kicker text-[var(--color-p-300)] mb-5">{g.title}</div>
                 <ul className="grid gap-0">
@@ -255,7 +253,7 @@ export default function SecurityView() {
             }
             sub="Security choices that let one platform replace multiple access paths, duplicated secrets, and fragmented review workflows, while keeping one operational surface."
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
             {DEPLOY.map((d, i) => {
               const Icon = d.icon;
               return (
@@ -265,21 +263,20 @@ export default function SecurityView() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                   transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
+                  className="pt-7 border-t border-[rgba(167,139,250,0.16)]"
                 >
-                  <SpotlightCard glow="violet" className="h-full p-8 md:p-10 rounded-[24px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl text-[var(--color-p-300)] mb-6 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <h3 className="editorial-lede text-[var(--color-ink)] mb-3">{d.name}</h3>
-                    <p className="body-m text-[var(--color-ink-soft)] mb-6 max-w-[48ch]">{d.body}</p>
-                    <ul className="flex flex-wrap gap-2">
-                      {d.items.map((it) => (
-                        <li key={it} className="font-mono text-[11px] tracking-[0.04em] text-[var(--color-ink-mute)] px-3 py-1.5 rounded-full border border-white/8 bg-white/[0.02]">
-                          {it}
-                        </li>
-                      ))}
-                    </ul>
-                  </SpotlightCard>
+                  <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl text-[var(--color-p-300)] mb-6 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
+                    <Icon size={20} strokeWidth={1.5} />
+                  </span>
+                  <h3 className="editorial-lede text-[var(--color-ink)] mb-3">{d.name}</h3>
+                  <p className="body-m text-[var(--color-ink-soft)] mb-6 max-w-[48ch]">{d.body}</p>
+                  <ul className="flex flex-wrap gap-2">
+                    {d.items.map((it) => (
+                      <li key={it} className="font-mono text-[11px] tracking-[0.04em] text-[var(--color-ink-mute)] px-3 py-1.5 rounded-full border border-white/8 bg-white/[0.02]">
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               );
             })}

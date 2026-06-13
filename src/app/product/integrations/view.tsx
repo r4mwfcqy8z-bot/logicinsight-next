@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { PageHead, SectionHead } from "@/components/sections/page-head";
 import { TrustMarquee } from "@/components/sections/trust-marquee";
 import { FinalCTA } from "@/components/sections/why-and-cta";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 
 export const dynamic = "force-static";
 
@@ -128,22 +127,23 @@ function Status({ s }: { s: "GA" | "Coming Soon" }) {
   );
 }
 
-function Card({ it, i }: { it: Integ; i: number }) {
+function Row({ it, i }: { it: Integ; i: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.6, delay: (i % 4) * 0.05, ease: EASE }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      transition={{ duration: 0.55, delay: (i % 4) * 0.05, ease: EASE }}
+      className="grid-edit items-baseline py-5 border-b border-[rgba(167,139,250,0.12)]"
     >
-      <SpotlightCard glow="violet" className="h-full p-6 md:p-7 rounded-[20px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <h3 className="text-[1rem] font-semibold tracking-[-0.015em] text-[var(--color-ink)] leading-[1.25]">{it.name}</h3>
-          <Status s={it.status} />
-        </div>
-        <p className="text-[0.875rem] text-[var(--color-ink-soft)] leading-[1.5] mb-4">{it.body}</p>
-        <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--color-p-300)]">{it.tag}</span>
-      </SpotlightCard>
+      <div className="col-span-12 md:col-span-4">
+        <h3 className="text-[1rem] font-semibold tracking-[-0.015em] text-[var(--color-ink)] leading-[1.3]">{it.name}</h3>
+        <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--color-p-300)] mt-1.5 block">{it.tag}</span>
+      </div>
+      <p className="col-span-12 md:col-span-6 text-[0.9rem] text-[var(--color-ink-soft)] leading-[1.55] mt-2 md:mt-0">{it.body}</p>
+      <div className="col-span-12 md:col-span-2 mt-2.5 md:mt-0 md:text-right">
+        <Status s={it.status} />
+      </div>
     </motion.div>
   );
 }
@@ -216,8 +216,8 @@ export default function IntegrationsPage() {
                 {cat.intro}
               </motion.p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-              {cat.items.map((it, i) => <Card key={it.name} it={it} i={i} />)}
+            <div className="border-t border-[rgba(167,139,250,0.16)]">
+              {cat.items.map((it, i) => <Row key={it.name} it={it} i={i} />)}
             </div>
           </div>
         </section>

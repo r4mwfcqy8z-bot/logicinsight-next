@@ -198,18 +198,18 @@ export default function AboutView() {
             we should talk.
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[920px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 max-w-[920px] mx-auto border-y border-[rgba(167,139,250,0.16)]">
             {CONTACT.map((c, i) => {
               const Icon = c.icon;
               const inner = (
-                <SpotlightCard glow="violet" className="block h-full p-8 rounded-[22px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-                  <div className="flex items-center justify-between mb-7">
-                    <Icon size={22} strokeWidth={1.5} className="text-[var(--color-p-300)]" />
-                    {c.href && <ArrowUpRight size={16} className="text-[var(--color-ink-faint)]" />}
-                  </div>
-                  <div className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--color-ink-faint)] mb-2">{c.label}</div>
-                  <div className="text-[1.0625rem] font-semibold tracking-[-0.01em] text-[var(--color-ink)]">{c.value}</div>
-                </SpotlightCard>
+                <span className="group block h-full px-6 py-9 text-center">
+                  <Icon size={22} strokeWidth={1.5} className="text-[var(--color-p-300)] mx-auto mb-5" />
+                  <span className="block font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--color-ink-faint)] mb-2">{c.label}</span>
+                  <span className="inline-flex items-center gap-1.5 text-[1.0625rem] font-semibold tracking-[-0.01em] text-[var(--color-ink)]">
+                    {c.value}
+                    {c.href && <ArrowUpRight size={15} className="text-[var(--color-ink-faint)] transition-all group-hover:text-[var(--color-p-300)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />}
+                  </span>
+                </span>
               );
               return (
                 <motion.div
@@ -218,8 +218,9 @@ export default function AboutView() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                   transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
+                  className={i > 0 ? "md:border-l md:border-[rgba(167,139,250,0.16)]" : ""}
                 >
-                  {c.href ? <a href={c.href} className="block group">{inner}</a> : inner}
+                  {c.href ? <a href={c.href} className="block h-full transition-colors hover:text-[var(--color-p-200)]">{inner}</a> : inner}
                 </motion.div>
               );
             })}

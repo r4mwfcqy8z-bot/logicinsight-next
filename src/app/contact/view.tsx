@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { Mail, MapPin, Building2, Check, ArrowRight } from "lucide-react";
 import { PageHead } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 import { Magnetic } from "@/components/magnetic";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -46,7 +45,7 @@ export default function ContactView() {
                 </span>
               </h2>
 
-              <div className="grid gap-4">
+              <div className="border-t border-[rgba(167,139,250,0.14)]">
                 <ChannelCard
                   icon={Mail}
                   label="Email"
@@ -128,23 +127,21 @@ export default function ContactView() {
 
 function ChannelCard({ icon: Icon, label, value, note, href, arrow }: { icon: typeof Mail; label: string; value: string; note: string; href?: string; arrow?: boolean }) {
   const inner = (
-    <SpotlightCard glow="violet" className="block h-full p-6 md:p-7 rounded-[20px] matte depth-1 hover:depth-2 transition-shadow duration-500 group">
-      <div className="flex items-start gap-4">
-        <span className="grid place-items-center w-10 h-10 rounded-xl border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)] text-[var(--color-p-300)] shrink-0">
-          <Icon size={18} strokeWidth={1.5} />
-        </span>
-        <div className="min-w-0">
-          <div className="kicker mb-2">{label}</div>
-          <div className="text-[1.0625rem] font-semibold tracking-[-0.01em] text-[var(--color-ink)] inline-flex items-center gap-1.5">
-            {value}
-            {arrow && <ArrowRight size={14} strokeWidth={2} className="text-[var(--color-p-300)] group-hover:translate-x-0.5 transition-transform" />}
-          </div>
-          <p className="text-[0.875rem] text-[var(--color-ink-mute)] mt-1.5 leading-[1.45]">{note}</p>
+    <div className="group flex items-start gap-4 py-5 border-b border-[rgba(167,139,250,0.14)]">
+      <span className="grid place-items-center w-10 h-10 rounded-xl border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)] text-[var(--color-p-300)] shrink-0 transition-colors group-hover:border-[var(--color-p-400)]/45">
+        <Icon size={18} strokeWidth={1.5} />
+      </span>
+      <div className="min-w-0">
+        <div className="kicker mb-2">{label}</div>
+        <div className="text-[1.0625rem] font-semibold tracking-[-0.01em] text-[var(--color-ink)] inline-flex items-center gap-1.5">
+          {value}
+          {arrow && <ArrowRight size={14} strokeWidth={2} className="text-[var(--color-p-300)] group-hover:translate-x-0.5 transition-transform" />}
         </div>
+        <p className="text-[0.875rem] text-[var(--color-ink-mute)] mt-1.5 leading-[1.45]">{note}</p>
       </div>
-    </SpotlightCard>
+    </div>
   );
-  return href ? <a href={href} className="block">{inner}</a> : inner;
+  return href ? <a href={href} className="block transition-colors hover:text-[var(--color-p-200)]">{inner}</a> : inner;
 }
 
 function Field({ label, name, type = "text", required, placeholder }: { label: string; name: string; type?: string; required?: boolean; placeholder?: string }) {

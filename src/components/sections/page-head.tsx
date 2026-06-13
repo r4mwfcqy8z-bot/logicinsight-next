@@ -91,12 +91,12 @@ export function StatementBand({ title, sub }: PageHeadProps) {
           style={{ background: "radial-gradient(circle, rgba(167,139,250,0.16), transparent 65%)" }}
         />
       </div>
-      <div className="grid-edit items-start relative">
+      <div className="grid-edit items-center relative">
         <div className="col-span-12 lg:col-span-7">
           <h2 className="editorial-statement balance">{title}</h2>
         </div>
         {sub && (
-          <p className="col-span-12 lg:col-start-8 lg:col-span-5 self-start editorial-sub mt-6 lg:mt-2">
+          <p className="col-span-12 lg:col-start-8 lg:col-span-5 self-center editorial-sub mt-6 lg:mt-0">
             {sub}
           </p>
         )}

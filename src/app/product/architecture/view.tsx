@@ -5,7 +5,6 @@ import { Antenna, GitMerge, Activity, Database, Send } from "lucide-react";
 import { PageHead, SectionHead } from "@/components/sections/page-head";
 import { Forwarding } from "@/components/sections/forwarding";
 import { FinalCTA } from "@/components/sections/why-and-cta";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -188,7 +187,7 @@ export default function ArchitecturePage() {
             sub="Each stage in the appliance is designed to reduce handoffs: collect once, enrich locally, analyze with context, then decide what stays on-prem and what gets forwarded."
           />
 
-          <div className="grid gap-5">
+          <div className="border-t border-[rgba(167,139,250,0.16)]">
             {STAGES.map((s, i) => {
               const Icon = s.icon;
               return (
@@ -198,26 +197,33 @@ export default function ArchitecturePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "0px 0px -10% 0px" }}
                   transition={{ duration: 0.75, delay: i * 0.05, ease: EASE }}
+                  className="grid-edit items-start py-10 md:py-12 border-b border-[rgba(167,139,250,0.16)]"
                 >
-                  <SpotlightCard glow="violet" className="grid md:grid-cols-[auto_1fr_1fr] gap-6 md:gap-10 items-start p-7 md:p-9 rounded-[24px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-                    <div className="flex items-start gap-4 md:max-w-[280px]">
-                      <Icon size={22} strokeWidth={1.5} className="text-[var(--color-p-300)] shrink-0 mt-1" />
-                      <div>
-                        <div className="font-mono text-[10px] tracking-[0.20em] uppercase text-[var(--color-ink-faint)] tabular-nums mb-2">
-                          Stage {s.n}
-                        </div>
-                        <h3 className="editorial-lede text-[var(--color-ink)]">{s.name}</h3>
-                      </div>
+                  <div className="col-span-12 lg:col-span-6">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="grid place-items-center w-10 h-10 rounded-xl text-[var(--color-p-300)] border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)] shrink-0">
+                        <Icon size={18} strokeWidth={1.6} />
+                      </span>
+                      <span className="font-mono text-[10px] tracking-[0.20em] uppercase text-[var(--color-ink-faint)] tabular-nums">
+                        Stage {s.n}
+                      </span>
                     </div>
-                    <p className="body-l max-w-[44ch]">{s.body}</p>
-                    <ul className="grid gap-0 border-t border-[rgba(167,139,250,0.14)] md:border-t-0 md:border-l md:border-l-[rgba(167,139,250,0.14)] md:pl-7">
-                      {s.items.map((it, j) => (
-                        <li key={it} className={`text-[0.875rem] text-[var(--color-ink-soft)] py-2 ${j < s.items.length - 1 ? "border-b border-[rgba(167,139,250,0.10)]" : ""}`}>
-                          {it}
+                    <h3 className="editorial-lede text-[var(--color-ink)] mb-3">{s.name}</h3>
+                    <p className="body-l max-w-[46ch]">{s.body}</p>
+                  </div>
+                  <div className="col-span-12 lg:col-start-7 lg:col-span-6 mt-7 lg:mt-1">
+                    <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-0">
+                      {s.items.map((it) => (
+                        <li
+                          key={it}
+                          className="flex items-start gap-2.5 py-2.5 border-b border-[rgba(167,139,250,0.10)] text-[0.9rem] text-[var(--color-ink-soft)] leading-[1.45]"
+                        >
+                          <span className="mt-[0.5em] w-1 h-1 rounded-full bg-[var(--color-p-400)] shrink-0" />
+                          <span>{it}</span>
                         </li>
                       ))}
                     </ul>
-                  </SpotlightCard>
+                  </div>
                 </motion.div>
               );
             })}

@@ -4,32 +4,31 @@ import { motion } from "motion/react";
 import { Boxes, Store, Wrench, Share2, TrendingUp, Megaphone, Award, KeyRound, Globe, LifeBuoy, BarChart3, Check } from "lucide-react";
 import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 import { Magnetic } from "@/components/magnetic";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const PROGRAMS = [
   {
-    icon: Boxes,
+    icon: <Boxes size={20} strokeWidth={1.5} />,
     name: "Technology Partner",
     body: "Build technical integrations that extend infrastructure observability and broaden the data visible from one console.",
     bullets: ["Technical integration collaboration", "Enablement and technical alignment", "Co-marketing opportunities"],
   },
   {
-    icon: Store,
+    icon: <Store size={20} strokeWidth={1.5} />,
     name: "Reseller Partner",
     body: "Introduce and resell Logic Insight to your customers with a supported, well-defined sales motion.",
     bullets: ["Competitive margins", "Sales enablement", "Deal registration"],
   },
   {
-    icon: Wrench,
+    icon: <Wrench size={20} strokeWidth={1.5} />,
     name: "Consulting Partner",
     body: "Deliver implementation, integration, and consulting services for Logic Insight customers.",
     bullets: ["Implementation enablement", "Service delivery collaboration", "Customer referrals"],
   },
   {
-    icon: Share2,
+    icon: <Share2 size={20} strokeWidth={1.5} />,
     name: "Referral Partner",
     body: "Refer qualified leads and earn commissions on the deals that close. Light-touch by design.",
     bullets: ["Referral commissions", "Simple program", "No commitment required"],
@@ -80,36 +79,7 @@ export default function PartnersView() {
               </>
             }
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {PROGRAMS.map((prog, i) => {
-              const Icon = prog.icon;
-              return (
-                <motion.div
-                  key={prog.name}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-                  transition={{ duration: 0.7, delay: i * 0.07, ease: EASE }}
-                >
-                  <SpotlightCard glow="violet" className="h-full p-8 md:p-9 rounded-[24px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl text-[var(--color-p-300)] mb-6 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </span>
-                    <h3 className="text-[1.375rem] font-semibold tracking-[-0.02em] text-[var(--color-ink)] mb-3">{prog.name}</h3>
-                    <p className="body-m max-w-[44ch]">{prog.body}</p>
-                    <ul className="mt-6 grid gap-2.5 border-t border-[rgba(167,139,250,0.14)] pt-5">
-                      {prog.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-3 text-[0.9375rem] text-[var(--color-ink-soft)] leading-[1.45]">
-                          <Check size={14} strokeWidth={2.2} className="mt-1 text-[var(--color-p-300)] shrink-0" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  </SpotlightCard>
-                </motion.div>
-              );
-            })}
-          </div>
+          <FeatGrid items={PROGRAMS} cols={2} />
         </div>
       </section>
 

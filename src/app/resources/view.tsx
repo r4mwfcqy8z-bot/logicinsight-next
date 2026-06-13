@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, Network, Server, ShieldCheck, GitCompare, FileText, BookOpen, Compass, Library, Clock } from "lucide-react";
 import { PageHead, SectionHead } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -29,26 +28,29 @@ const GUIDES = [
   { icon: <BookOpen size={18} strokeWidth={1.5} />,   name: "Editorial · Blog",                      href: "/blog",                                                 body: "Field notes on Nutanix observability, identity, and backups." },
 ];
 
-function Card({ item, i }: { item: { icon: React.ReactNode; name: string; href: string; body: string }; i: number }) {
+function Row({ item, i }: { item: { icon: React.ReactNode; name: string; href: string; body: string }; i: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.65, delay: i * 0.05, ease: EASE }}
-      className="block group h-full"
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      transition={{ duration: 0.55, delay: i * 0.05, ease: EASE }}
     >
-      <Link href={item.href} className="block h-full">
-        <SpotlightCard glow="violet" className="h-full p-7 md:p-8 rounded-[22px] matte depth-1 hover:depth-2 transition-shadow duration-500">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl text-[var(--color-p-300)] mb-6 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
+      <Link href={item.href} className="group grid-edit items-center py-6 md:py-7 border-b border-[rgba(167,139,250,0.14)]">
+        <div className="col-span-12 md:col-span-5 flex items-center gap-4">
+          <span className="grid place-items-center w-10 h-10 rounded-xl text-[var(--color-p-300)] border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)] shrink-0 transition-colors group-hover:border-[var(--color-p-400)]/45">
             {item.icon}
           </span>
-          <h3 className="text-[1.25rem] font-semibold tracking-[-0.02em] mb-2 text-[var(--color-ink)]">{item.name}</h3>
-          <p className="text-[0.9375rem] text-[var(--color-ink-soft)] leading-[1.5]">{item.body}</p>
-          <span className="inline-flex items-center gap-2 mt-6 font-mono text-[11px] tracking-[0.18em] uppercase text-[var(--color-p-300)] group-hover:text-[var(--color-p-100)] transition-colors">
-            Open <ArrowRight size={12} strokeWidth={2} className="transition-transform duration-500 group-hover:translate-x-0.5" />
-          </span>
-        </SpotlightCard>
+          <h3 className="text-[1.15rem] font-semibold tracking-[-0.02em] text-[var(--color-ink)] transition-colors group-hover:text-white">
+            {item.name}
+          </h3>
+        </div>
+        <p className="col-span-12 md:col-span-6 body-m text-[var(--color-ink-soft)] mt-2 md:mt-0 pl-14 md:pl-0">
+          {item.body}
+        </p>
+        <div className="hidden md:flex col-span-1 justify-end">
+          <ArrowRight size={16} strokeWidth={2} className="text-[var(--color-ink-faint)] transition-all group-hover:text-[var(--color-p-200)] group-hover:translate-x-0.5" />
+        </div>
       </Link>
     </motion.div>
   );
@@ -83,8 +85,8 @@ export default function ResourcesPage() {
               </>
             }
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {CORE.map((c, i) => <Card key={c.href} item={c} i={i} />)}
+          <div className="border-t border-[rgba(167,139,250,0.14)]">
+            {CORE.map((c, i) => <Row key={c.href} item={c} i={i} />)}
           </div>
         </div>
       </section>
@@ -102,8 +104,8 @@ export default function ResourcesPage() {
               </>
             }
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {TOOLS.map((c, i) => <Card key={c.href} item={c} i={i} />)}
+          <div className="border-t border-[rgba(167,139,250,0.14)]">
+            {TOOLS.map((c, i) => <Row key={c.href} item={c} i={i} />)}
           </div>
         </div>
       </section>
@@ -121,8 +123,8 @@ export default function ResourcesPage() {
               </>
             }
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {GUIDES.map((c, i) => <Card key={c.href} item={c} i={i} />)}
+          <div className="border-t border-[rgba(167,139,250,0.14)]">
+            {GUIDES.map((c, i) => <Row key={c.href} item={c} i={i} />)}
           </div>
         </div>
       </section>

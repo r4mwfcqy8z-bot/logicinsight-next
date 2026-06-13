@@ -74,28 +74,24 @@ export function WhyLogicInsight() {
           ))}
         </motion.div>
 
-        {/* Body run, editorial paragraphs, wide column. */}
-        <div className="grid-edit mb-24 md:mb-32">
-          <div className="col-span-12 lg:col-start-2 lg:col-span-9">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-              transition={{ duration: 0.85, ease: EASE }}
-              className="space-y-8"
-            >
-              <p className="editorial-lede balance max-w-[58ch] text-[var(--color-ink)]">
-                Enterprise infrastructure operations got harder, not easier.
-              </p>
-              <p className="body-l max-w-[68ch]">
-                Each domain ended up with its own console. Nutanix in one, backups in another, storage in a third, network somewhere else. The cost of stitching them together fell on the operators in the middle of the night.
-              </p>
-              <p className="body-l max-w-[68ch]">
-                Overwatch starts with deep Nutanix coverage and extends the same operating model across bare-metal hardware, SNMP devices, protection posture, storage context, and network flows, inside one local appliance.
-              </p>
-            </motion.div>
-          </div>
-        </div>
+        {/* Body run, centered editorial measure to match the centered header + stats. */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          transition={{ duration: 0.85, ease: EASE }}
+          className="mb-24 md:mb-32 max-w-[64ch] mx-auto text-center space-y-7"
+        >
+          <p className="editorial-lede balance text-[var(--color-ink)]">
+            Enterprise infrastructure operations got harder, not easier.
+          </p>
+          <p className="body-l">
+            Each domain ended up with its own console. Nutanix in one, backups in another, storage in a third, network somewhere else. The cost of stitching them together fell on the operators in the middle of the night.
+          </p>
+          <p className="body-l">
+            Overwatch starts with deep Nutanix coverage and extends the same operating model across bare-metal hardware, SNMP devices, protection posture, storage context, and network flows, inside one local appliance.
+          </p>
+        </motion.div>
 
         {/* Founders, offset asymmetric pair. */}
         <div className="grid-edit">
