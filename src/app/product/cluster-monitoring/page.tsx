@@ -49,7 +49,7 @@ export default function ClusterMonitoringPage() {
         eyebrow="Overwatch · Cluster Overview"
         title={<>The actual cluster console,{" "}<span className="serif-italic gradient-text">live.</span></>}
         sub="Health score, infrastructure load, active alerts, threats, SNMP devices, downed entities, queue depth, compliance, all on one screen."
-        src="/dashboards/command-center.png"
+        src="/dashboards/command-center.webp"
         alt="Overwatch Command Center"
         width={2080}
         height={1003}

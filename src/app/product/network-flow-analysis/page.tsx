@@ -36,7 +36,7 @@ export default function NetworkFlowPage() {
         eyebrow="NetFlow WAN Explorer"
         title={<>The actual product,{" "}<span className="serif-italic gradient-text">live.</span></>}
         sub="Global traffic map, threat-intel correlation, and per-flow analysis from the same appliance as cluster monitoring."
-        src="/dashboards/netflow.png"
+        src="/dashboards/netflow.webp"
         alt="NetFlow WAN Explorer"
         width={2080}
         height={1003}

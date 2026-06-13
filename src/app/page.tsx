@@ -22,7 +22,7 @@ export default function HomePage() {
         eyebrow="Overwatch Command Center"
         title={<>One operational view, <span className="italic font-bold text-[var(--color-p-200)]" style={{ letterSpacing: "-0.035em" }}>real-time.</span></>}
         sub="Eight KPIs at a glance, an environment health radar, platform status across Prism, SNMP, HYCU, Redfish, and the Active Alerts queue."
-        src="/dashboards/command-center.png"
+        src="/dashboards/command-center.webp"
         alt="Overwatch Command Center"
         width={2080}
         height={1003}

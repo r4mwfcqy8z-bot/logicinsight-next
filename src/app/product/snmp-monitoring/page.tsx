@@ -96,7 +96,7 @@ export default function SNMPPage() {
           </>
         }
         sub="Every device, every port, every config, beside Nutanix in the same Overwatch console."
-        src="/dashboards/snmp-fleet.png"
+        src="/dashboards/snmp-fleet.webp"
         alt="Overwatch SNMP Fleet"
         width={2880}
         height={1530}

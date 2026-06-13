@@ -62,7 +62,7 @@ export default function AIAssistantPage() {
           </>
         }
         sub="Suggested prompts across Health & Alerts, Capacity, and Network & Hardware. Ask anything about your Overwatch environment."
-        src="/dashboards/ai-assistant.png"
+        src="/dashboards/ai-assistant.webp"
         alt="Overwatch AI Assistant"
         width={2852}
         height={1503}
