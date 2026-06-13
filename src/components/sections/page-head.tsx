@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { SpotlightCard } from "@/components/wow/spotlight-card";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -80,11 +79,9 @@ export function SectionHead({ title, sub }: PageHeadProps) {
 }
 
 /**
- * StatementBand — a contained, premium editorial statement.
- * Replaces floating centered SectionHeads that left big empty space.
- * Fills its area with a matte panel + accent glow; left-aligned, asymmetric.
+ * StatementBand: a contained, premium editorial statement panel.
  */
-export function StatementBand({ eyebrow, title, sub }: PageHeadProps) {
+export function StatementBand({ title, sub }: PageHeadProps) {
   return (
     <div className="relative rounded-[28px] matte depth-2 px-8 md:px-14 py-14 md:py-20">
       {/* Glow lives in its own clipped layer so the panel never clips the heading. */}
@@ -96,7 +93,6 @@ export function StatementBand({ eyebrow, title, sub }: PageHeadProps) {
       </div>
       <div className="grid-edit items-start relative">
         <div className="col-span-12 lg:col-span-7">
-          {eyebrow && <div className="kicker mb-5">{eyebrow}</div>}
           <h2 className="editorial-statement balance">{title}</h2>
         </div>
         {sub && (
@@ -118,9 +114,9 @@ interface FeatGridItem {
 }
 
 /**
- * FeatGrid, editorial spotlight-card grid.
- * Cards are quiet by default, dramatic on hover (cursor-following violet glow).
- * No decorative dots, no AI tells.
+ * FeatGrid: clean editorial columns (no boxes, no glow). Each item is a
+ * hairline-topped block: icon, optional label, title, body, optional points.
+ * Replaces the boxed-card grid so subpages read editorial, not templated.
  */
 export function FeatGrid({ items, cols = 3 }: { items: FeatGridItem[]; cols?: 2 | 3 | 4 }) {
   const colsClass =
@@ -129,45 +125,42 @@ export function FeatGrid({ items, cols = 3 }: { items: FeatGridItem[]; cols?: 2 
                  "md:grid-cols-2 lg:grid-cols-4";
 
   return (
-    <div className={`grid grid-cols-1 ${colsClass} gap-4 md:gap-5`}>
+    <div className={`grid grid-cols-1 ${colsClass} gap-x-8 gap-y-10 md:gap-x-10 md:gap-y-12`}>
       {items.map((it, i) => (
         <motion.div
           key={it.name}
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          transition={{ duration: 0.7, delay: i * 0.06, ease: EASE }}
+          transition={{ duration: 0.65, delay: i * 0.05, ease: EASE }}
+          className="pt-6 border-t border-[rgba(167,139,250,0.16)]"
         >
-          <SpotlightCard
-            glow="violet"
-            className="h-full p-7 md:p-8 rounded-[22px] matte depth-1 hover:depth-2 transition-shadow duration-500"
-          >
-            {it.icon && (
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl text-[var(--color-p-300)] mb-5 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
-                {it.icon}
-              </span>
-            )}
-            <h3 className="text-[1.25rem] font-semibold tracking-[-0.02em] mb-2 text-[var(--color-ink)]">
-              {it.name}
-            </h3>
-            {it.sub && (
-              <p className="font-mono text-[10.5px] tracking-[0.18em] text-[var(--color-p-300)] uppercase mb-3">
-                {it.sub}
-              </p>
-            )}
-            <p className="text-[0.9375rem] leading-[1.55] text-[var(--color-ink-soft)]">
-              {it.body}
-            </p>
-            {it.bullets && (
-              <ul className="mt-5 grid gap-2 border-t border-[rgba(167,139,250,0.14)] pt-4">
-                {it.bullets.map((b) => (
-                  <li key={b} className="text-[12.5px] text-[var(--color-ink-mute)] tracking-[-0.005em] leading-[1.45]">
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </SpotlightCard>
+          {it.icon && (
+            <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl text-[var(--color-p-300)] mb-5 border border-[rgba(167,139,250,0.18)] bg-[rgba(167,139,250,0.06)]">
+              {it.icon}
+            </span>
+          )}
+          {it.sub && (
+            <div className="font-mono text-[10.5px] tracking-[0.18em] text-[var(--color-p-300)] uppercase mb-2">
+              {it.sub}
+            </div>
+          )}
+          <h3 className="text-[1.2rem] font-semibold tracking-[-0.02em] mb-2 text-[var(--color-ink)]">
+            {it.name}
+          </h3>
+          <p className="text-[0.9375rem] leading-[1.55] text-[var(--color-ink-soft)]">
+            {it.body}
+          </p>
+          {it.bullets && (
+            <ul className="mt-4 grid gap-2">
+              {it.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-2.5 text-[12.5px] text-[var(--color-ink-mute)] tracking-[-0.005em] leading-[1.45]">
+                  <span className="mt-[0.5em] w-1 h-1 rounded-full bg-[var(--color-p-400)] shrink-0" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </motion.div>
       ))}
     </div>
