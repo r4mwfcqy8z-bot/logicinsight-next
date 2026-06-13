@@ -238,8 +238,8 @@ function TierCard({ t, i }: { t: typeof TIERS[number]; i: number }) {
     >
       <SpotlightCard
         glow={featured ? "pink" : "violet"}
-        className={`relative h-full p-8 md:p-10 rounded-[28px] flex flex-col gap-6 ${
-          featured ? "signature-glass violet-glow" : "matte depth-1"
+        className={`relative h-full rounded-[28px] flex flex-col gap-6 px-8 md:px-10 pb-8 md:pb-10 ${
+          featured ? "pt-12 md:pt-14 signature-glass violet-glow" : "pt-8 md:pt-10 matte depth-1"
         }`}
       >
         {featured && (
@@ -296,7 +296,7 @@ function ServiceTiers() {
           }
         />
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-7 items-stretch pt-6 md:pt-8">
+        <div className="grid md:grid-cols-3 gap-7 md:gap-9 items-stretch pt-6 md:pt-8">
           {TIERS.map((t, i) => <TierCard key={t.name} t={t} i={i} />)}
         </div>
 

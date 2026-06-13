@@ -31,7 +31,7 @@ const DEPLOY = [
 
 function Hero() {
   return (
-    <section className="relative min-h-[82dvh] flex items-center overflow-hidden">
+    <section className="relative min-h-[60dvh] flex items-center pt-28 md:pt-32 overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"

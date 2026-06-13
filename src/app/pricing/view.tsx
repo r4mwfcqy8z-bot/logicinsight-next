@@ -156,7 +156,7 @@ export default function PricingView() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[72dvh] flex items-center overflow-hidden">
+      <section className="relative min-h-[58dvh] flex items-center pt-28 md:pt-32 overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"

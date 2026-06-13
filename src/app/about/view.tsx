@@ -40,7 +40,7 @@ export default function AboutView() {
   return (
     <>
       {/* HERO, manifesto. */}
-      <section className="relative min-h-[86dvh] flex items-center overflow-hidden">
+      <section className="relative min-h-[62dvh] flex items-center pt-28 md:pt-32 overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
