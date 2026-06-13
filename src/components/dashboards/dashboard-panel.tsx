@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { asset } from "@/lib/asset";
 
@@ -33,6 +33,7 @@ export function DashboardPanel({
   mark,
 }: DashboardPanelProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y     = useTransform(scrollYProgress, [0, 0.5, 1], [70, 0, -50]);
   const scale = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0.94, 1, 1, 0.97]);
@@ -72,6 +73,17 @@ export function DashboardPanel({
                       <span className="text-[var(--color-ink-faint)]">{path}</span>
                     </div>
                   </div>
+                  <div className="shrink-0 flex items-center gap-1.5 pr-1">
+                    <motion.span
+                      aria-hidden
+                      className="w-1.5 h-1.5 rounded-full bg-[var(--color-emerald-400)]"
+                      animate={reduce ? undefined : { opacity: [1, 0.3, 1], scale: [1, 0.8, 1] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <span className="font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: "var(--color-emerald-400)" }}>
+                      Live
+                    </span>
+                  </div>
                 </div>
 
                 <div className="relative bg-[#07050E]">
@@ -86,12 +98,14 @@ export function DashboardPanel({
                     className="w-full h-auto block"
                     style={{ filter: "invert(0.92) hue-rotate(180deg) saturate(1.08)" }}
                   />
-                  <div
+                  <motion.div
                     className="pointer-events-none absolute inset-0"
                     style={{
                       background: "radial-gradient(900px 480px at 50% 0%, rgba(167,139,250,0.10), transparent 70%)",
                       mixBlendMode: "screen",
                     }}
+                    animate={reduce ? undefined : { opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                     aria-hidden
                   />
                 </div>
