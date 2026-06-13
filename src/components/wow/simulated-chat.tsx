@@ -37,7 +37,7 @@ const TURNS: Turn[] = [
     question: "Which hosts have firmware drift right now?",
     toolsHit: ["inventory", "alerts"],
     answer:
-      "Three hosts are running BIOS versions outside the cluster baseline: prod-host-04 (1.8.2 vs baseline 1.8.4), prod-host-07 (1.8.1), and dr-host-02 (1.8.0). prod-host-07 also has DIMM 8A showing 47 correctable ECC errors in the last 24 hours — recommend module replacement first.",
+      "Three hosts are running BIOS versions outside the cluster baseline: prod-host-04 (1.8.2 vs baseline 1.8.4), prod-host-07 (1.8.1), and dr-host-02 (1.8.0). prod-host-07 also has DIMM 8A showing 47 correctable ECC errors in the last 24 hours. Recommend module replacement first.",
   },
 ];
 

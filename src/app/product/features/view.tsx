@@ -94,7 +94,7 @@ function OperatingModel() {
               style={{ scaleY, background: "linear-gradient(180deg, var(--color-p-300), var(--color-p-500))", boxShadow: "0 0 12px rgba(167,139,250,0.5)" }}
             />
           )}
-          {STAGES.map((s, i) => {
+          {STAGES.map((s) => {
             const Icon = s.icon;
             return (
               <motion.div
