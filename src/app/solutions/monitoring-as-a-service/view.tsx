@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head";
+import { PageHead, SectionHead } from "@/components/sections/page-head";
 import { Magnetic } from "@/components/magnetic";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 import { SpotlightCard } from "@/components/wow/spotlight-card";
@@ -407,7 +407,22 @@ export default function MaaSPage() {
               </>
             }
           />
-          <FeatGrid items={GAP} cols={3} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {GAP.map((g, i) => (
+              <motion.div
+                key={g.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                transition={{ duration: 0.65, delay: i * 0.08, ease: EASE }}
+                className="pt-6 border-t border-[rgba(167,139,250,0.16)]"
+              >
+                <span className="inline-flex text-[var(--color-pink-400)] mb-5">{g.icon}</span>
+                <h3 className="text-[1.25rem] font-semibold tracking-[-0.02em] text-[var(--color-ink)] mb-2.5">{g.name}</h3>
+                <p className="body-m text-[var(--color-ink-soft)] leading-[1.55]">{g.body}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -426,7 +441,24 @@ export default function MaaSPage() {
               </>
             }
           />
-          <FeatGrid items={WHAT} cols={3} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 max-w-[1000px] mx-auto border-t border-[rgba(167,139,250,0.14)]">
+            {WHAT.map((w, i) => (
+              <motion.div
+                key={w.name}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+                transition={{ duration: 0.6, delay: (i % 2) * 0.08, ease: EASE }}
+                className="flex items-start gap-4 py-6 border-b border-[rgba(167,139,250,0.12)]"
+              >
+                <span className="inline-flex text-[var(--color-p-300)] mt-0.5 shrink-0">{w.icon}</span>
+                <div>
+                  <h3 className="text-[1.0625rem] font-semibold tracking-[-0.01em] text-[var(--color-ink)] mb-1">{w.name}</h3>
+                  <p className="body-m text-[var(--color-ink-soft)] leading-[1.5]">{w.body}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -445,7 +477,26 @@ export default function MaaSPage() {
               </>
             }
           />
-          <FeatGrid items={TIMELINE} cols={4} />
+          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
+            <span aria-hidden className="hidden md:block absolute top-[18px] left-[12%] right-[12%] h-px bg-[rgba(167,139,250,0.2)]" />
+            {TIMELINE.map((s, i) => (
+              <motion.div
+                key={s.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
+                className="relative text-center md:text-left"
+              >
+                <span className="relative z-10 grid place-items-center w-9 h-9 rounded-full bg-[var(--color-bg)] border border-[rgba(167,139,250,0.3)] text-[var(--color-p-300)] mx-auto md:mx-0 mb-5">
+                  {s.icon}
+                </span>
+                <div className="font-mono text-[10.5px] tracking-[0.18em] uppercase text-[var(--color-p-300)] mb-1.5">{s.sub}</div>
+                <h3 className="text-[1.15rem] font-semibold tracking-[-0.02em] text-[var(--color-ink)] mb-2">{s.name}</h3>
+                <p className="body-m text-[var(--color-ink-soft)] leading-[1.5]">{s.body}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -464,7 +515,22 @@ export default function MaaSPage() {
               </>
             }
           />
-          <FeatGrid items={BUILT_FOR} cols={3} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {BUILT_FOR.map((b, i) => (
+              <motion.div
+                key={b.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                transition={{ duration: 0.65, delay: i * 0.08, ease: EASE }}
+                className="pt-6 border-t border-[rgba(167,139,250,0.16)]"
+              >
+                <span className="inline-flex text-[var(--color-p-300)] mb-5">{b.icon}</span>
+                <h3 className="text-[1.25rem] font-semibold tracking-[-0.02em] text-[var(--color-ink)] mb-2.5">{b.name}</h3>
+                <p className="body-m text-[var(--color-ink-soft)] leading-[1.55]">{b.body}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
