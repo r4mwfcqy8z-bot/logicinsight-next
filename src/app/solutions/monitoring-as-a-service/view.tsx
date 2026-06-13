@@ -234,26 +234,25 @@ function TierCard({ t, i }: { t: typeof TIERS[number]; i: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
-      className={featured ? "md:-translate-y-3" : ""}
     >
-      <SpotlightCard
-        glow={featured ? "pink" : "violet"}
-        className={`relative h-full rounded-[28px] flex flex-col gap-6 px-8 md:px-10 pb-8 md:pb-10 ${
-          featured ? "pt-12 md:pt-14 signature-glass violet-glow" : "pt-8 md:pt-10 matte depth-1"
+      <div
+        className={`relative h-full rounded-[28px] p-8 md:p-9 flex flex-col gap-6 transition-transform duration-500 hover:-translate-y-1.5 ${
+          featured ? "signature-glass violet-glow md:-translate-y-3" : "matte depth-1"
         }`}
+        style={{ transitionTimingFunction: "var(--ease-editorial)" }}
       >
         {featured && (
-          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-[var(--color-p-600)] text-white font-mono text-[10.5px] tracking-[0.18em] uppercase shadow-[0_8px_24px_-6px_rgba(124,58,237,0.6)]">
+          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-[var(--color-p-600)] text-white font-mono text-[10.5px] tracking-[0.18em] uppercase whitespace-nowrap shadow-[0_8px_24px_-6px_rgba(124,58,237,0.6)]">
             {t.badge}
           </span>
         )}
 
         <div>
-          <div className="kicker text-[var(--color-p-300)] mb-2">{t.sub}</div>
-          <h3 className="text-[1.75rem] font-bold tracking-[-0.03em] text-[var(--color-ink)]">{t.name}</h3>
+          <h3 className="text-[1.6rem] font-bold tracking-[-0.03em] text-[var(--color-ink)] mb-2">{t.name}</h3>
+          <p className="body-m text-[var(--color-ink-mute)]">{t.sub}</p>
         </div>
 
-        <ul className="grid gap-2.5 flex-1">
+        <ul className="grid gap-2.5 flex-1 border-t border-[rgba(167,139,250,0.18)] pt-6">
           {t.features.map((f) => (
             <li key={f} className="flex items-start gap-3 text-[0.9375rem] text-[var(--color-ink-soft)] leading-[1.5]">
               <Check size={14} strokeWidth={2.2} className="mt-1 text-[var(--color-p-300)] shrink-0" />
@@ -275,7 +274,7 @@ function TierCard({ t, i }: { t: typeof TIERS[number]; i: number }) {
             <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-500 group-hover:translate-x-0.5" />
           </Link>
         </Magnetic>
-      </SpotlightCard>
+      </div>
     </motion.div>
   );
 }
