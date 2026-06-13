@@ -234,7 +234,7 @@ function TierCard({ t, i }: { t: typeof TIERS[number]; i: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
-      className={featured ? "md:scale-[1.04] md:-translate-y-4" : ""}
+      className={featured ? "md:-translate-y-3" : ""}
     >
       <SpotlightCard
         glow={featured ? "pink" : "violet"}
@@ -296,7 +296,7 @@ function ServiceTiers() {
           }
         />
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-7 items-stretch pt-6 md:pt-8">
           {TIERS.map((t, i) => <TierCard key={t.name} t={t} i={i} />)}
         </div>
 

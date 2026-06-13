@@ -1,10 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "motion/react";
-import { SectionAmbient } from "@/components/wow/scroll-ambient";
 import { SpotlightCard } from "@/components/wow/spotlight-card";
-import { KineticHeadline } from "@/components/wow/kinetic-headline";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -17,91 +14,63 @@ interface PageHeadProps {
 }
 
 /**
- * Editorial page-head, asymmetric, scroll-ambient, kinetic headline.
- * Replaces the centered-pill + display-1 pattern across 26 subpages.
+ * Cinematic page head: one bold statement, centered in a luminous field.
+ * Clean, no eyebrow, consistent with the home / about / features / pricing heroes.
  */
-export function PageHead({ eyebrow, title, sub, glow = "violet" }: PageHeadProps) {
-  const ref = useRef<HTMLElement>(null);
-
+export function PageHead({ title, sub }: PageHeadProps) {
   return (
-    <section ref={ref} className="relative pt-28 md:pt-36 pb-14 md:pb-20 overflow-x-clip">
-      <SectionAmbient targetRef={ref} glow={glow} intensity={1} />
-
-      {/* Hairline grid backdrop, subtle */}
+    <section className="relative min-h-[72dvh] flex items-center overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(167,139,250,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,0.05) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
-          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
-        }}
+        style={{ background: "radial-gradient(56vw 54vh at 50% 38%, rgba(139,92,246,0.16), transparent 62%)" }}
       />
-
-      <div className="editorial-shell relative">
-        <div className="grid-edit">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
+      <div className="editorial-shell w-full text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE }}
+          className="editorial-display balance mx-auto max-w-[20ch]"
+        >
+          {title}
+        </motion.h1>
+        {sub && (
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE }}
-            className="col-span-12 mb-7 md:mb-10"
+            transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
+            className="mt-7 editorial-sub mx-auto max-w-[56ch]"
           >
-            <span className="kicker">{eyebrow}</span>
-          </motion.div>
-
-          <KineticHeadline
-            as="h1"
-            trigger="mount"
-            stagger={0.04}
-            delay={0.05}
-            className="col-span-12 lg:col-span-10 editorial-display balance max-w-[20ch]"
-          >
-            {title}
-          </KineticHeadline>
-
-          {sub && (
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, ease: EASE, delay: 0.55 }}
-              className="col-span-12 lg:col-start-2 lg:col-span-8 editorial-sub max-w-[60ch] mt-8 md:mt-10"
-            >
-              {sub}
-            </motion.p>
-          )}
-        </div>
+            {sub}
+          </motion.p>
+        )}
       </div>
     </section>
   );
 }
 
 /**
- * SectionHead, left-aligned editorial spread.
- * Kicker + title on left col, body on right col (asymmetric).
- * Replaces the centered-pill SectionHead across all subpages.
+ * Section head: clean, centered, stacked. No eyebrow, no split-header.
  */
-export function SectionHead({ eyebrow, title, sub }: PageHeadProps) {
+export function SectionHead({ title, sub }: PageHeadProps) {
   return (
-    <div className="grid-edit mb-10 md:mb-14">
-      <motion.div
+    <div className="mb-12 md:mb-16 text-center">
+      <motion.h2
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-        transition={{ duration: 0.75, ease: EASE }}
-        className={`col-span-12 ${sub ? "lg:col-span-7" : "lg:col-span-10"}`}
+        transition={{ duration: 0.8, ease: EASE }}
+        className="editorial-statement balance mx-auto max-w-[24ch]"
       >
-        <div className="kicker mb-5">{eyebrow}</div>
-        <h2 className={`editorial-statement balance ${sub ? "max-w-[22ch]" : "max-w-[28ch]"}`}>{title}</h2>
-      </motion.div>
+        {title}
+      </motion.h2>
       {sub && (
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-          transition={{ duration: 0.75, ease: EASE, delay: 0.15 }}
-          className="col-span-12 lg:col-start-9 lg:col-span-4 self-end editorial-sub max-w-[44ch]"
+          transition={{ duration: 0.8, ease: EASE, delay: 0.12 }}
+          className="mt-5 editorial-sub mx-auto max-w-[56ch]"
         >
           {sub}
         </motion.p>
