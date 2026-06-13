@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { TrustMarquee } from "@/components/sections/trust-marquee";
 import { StackDescent } from "@/components/sections/stack-descent";
+import { NutanixFirst } from "@/components/sections/nutanix-first";
 import { FiveEngines } from "@/components/sections/five-engines";
 import { Forwarding } from "@/components/sections/forwarding";
 import { WhyLogicInsight, FinalCTA } from "@/components/sections/why-and-cta";
@@ -28,6 +29,8 @@ export default function HomePage() {
         height={1003}
         path="/command-center"
       />
+
+      <NutanixFirst />
 
       <FiveEngines />
       <Forwarding />
