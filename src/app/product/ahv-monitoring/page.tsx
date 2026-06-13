@@ -2,7 +2,12 @@ import { Server, Activity, HardDrive, GitMerge, BarChart3 } from "lucide-react";
 import { PageHead, SectionHead, FeatGrid, StatementBand } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "AHV Monitoring" };
+export const metadata = {
+  title: "AHV Monitoring",
+  description:
+    "Monitor AHV hosts, VMs, and vDisk storage with cross-layer correlation, so host events, workload performance, and storage behavior stay on one screen.",
+  alternates: { canonical: "/product/ahv-monitoring" },
+};
 
 const EXPOSES = [
   { icon: <Server size={18} />,    name: "Host and hypervisor visibility", body: "Per-host CPU, memory, scheduling pressure, and Acropolis-level state, alongside the CVM telemetry it depends on." },

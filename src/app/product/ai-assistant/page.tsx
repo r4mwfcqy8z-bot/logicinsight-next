@@ -4,7 +4,12 @@ import { FinalCTA } from "@/components/sections/why-and-cta";
 import { SimulatedChat } from "@/components/wow/simulated-chat";
 import { BarChart3, AlertCircle, FileText, Boxes, Activity, Sparkles, Network, ShieldCheck, Cpu, ListChecks, Lock, Camera, Workflow, Zap, MousePointerClick } from "lucide-react";
 
-export const metadata = { title: "AI Assistant" };
+export const metadata = {
+  title: "AI Assistant",
+  description:
+    "Ask your infrastructure a question and get an answer grounded in the live metric, log, alert, or flow it pulled from, with the path shown so you can verify it.",
+  alternates: { canonical: "/product/ai-assistant" },
+};
 
 const PROBLEM = [
   { name: "The manual investigation loop", body: "Operators open Prism, then a backup dashboard, then an SNMP tool, then a network console, switching between tabs to assemble what should already be one answer." },

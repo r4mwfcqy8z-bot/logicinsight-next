@@ -2,7 +2,12 @@ import { BarChart3, Server, Filter, Bell, Cloud } from "lucide-react";
 import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Nutanix Datadog Integration" };
+export const metadata = {
+  title: "Nutanix Datadog Integration",
+  description:
+    "Send enriched, filtered Nutanix telemetry to Datadog as native metrics, Prism, AHV, and capacity context, with pre-built dashboards and Marketplace billing.",
+  alternates: { canonical: "/product/nutanix-datadog" },
+};
 
 const ARRIVES = [
   { icon: <Server size={18} />,    name: "Prism Central and cluster context", body: "Cluster health, capacity, replication, and protection state arrive as native Datadog metrics, labeled per cluster." },

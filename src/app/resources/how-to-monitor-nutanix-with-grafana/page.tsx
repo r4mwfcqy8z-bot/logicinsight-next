@@ -2,7 +2,12 @@ import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head
 import { FinalCTA } from "@/components/sections/why-and-cta";
 import { CheckCircle, AlertTriangle, Sparkles } from "lucide-react";
 
-export const metadata = { title: "How to monitor Nutanix with Grafana" };
+export const metadata = {
+  title: "How to monitor Nutanix with Grafana",
+  description:
+    "How to monitor Nutanix with Grafana: typed Prometheus exposition, a reusable dashboard library, and self-hosted vs Grafana Cloud, with the pitfalls to avoid.",
+  alternates: { canonical: "/resources/how-to-monitor-nutanix-with-grafana" },
+};
 
 const RECOMMENDED = [
   { icon: <CheckCircle size={18} strokeWidth={1.5} />, name: "Typed Prometheus exposition", body: "Expose Prism plus Redfish plus flow context as proper Prometheus metric families, not flat strings." },

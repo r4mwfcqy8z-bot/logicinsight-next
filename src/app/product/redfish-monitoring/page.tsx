@@ -2,7 +2,12 @@ import { Server, Thermometer, Cpu, HardDrive } from "lucide-react";
 import { PageHead, SectionHead, FeatGrid, StatementBand } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Redfish Monitoring" };
+export const metadata = {
+  title: "Redfish Monitoring",
+  description:
+    "Vendor-aware Redfish and IPMI hardware monitoring that ties power, thermal, firmware, and disk health to the Nutanix cluster running on top of it.",
+  alternates: { canonical: "/product/redfish-monitoring" },
+};
 
 const COVERS = [
   { icon: <Server size={18} />,      name: "Vendor-aware hardware coverage", body: "Dell iDRAC, HPE iLO, Lenovo XClarity, Supermicro, agentless via Redfish + IPMI fallback." },

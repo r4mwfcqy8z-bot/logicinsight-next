@@ -3,7 +3,12 @@ import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head
 import { DashboardPanel } from "@/components/dashboards/dashboard-panel";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Network Flow Analysis" };
+export const metadata = {
+  title: "Network Flow Analysis",
+  description:
+    "IPFIX and NetFlow analysis with a live east-west constellation, service-centric flow mapping, DNS insight, and unauthorized-connection detection, beside cluster monitoring.",
+  alternates: { canonical: "/product/network-flow-analysis" },
+};
 
 const SEES = [
   { icon: <Workflow size={18} />,    name: "Dynamic Network Constellation", body: "Live east-west view that updates as the topology shifts; clusters never feel static." },

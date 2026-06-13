@@ -2,7 +2,12 @@ import { ShieldCheck, Clock, HardDrive, AlertCircle } from "lucide-react";
 import { PageHead, SectionHead, FeatGrid, StatementBand } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "HYCU Monitoring" };
+export const metadata = {
+  title: "HYCU Monitoring",
+  description:
+    "Backup compliance, target utilization, and job health in the same operator view as Nutanix, not stranded in a separate console. Protection posture beside the cluster it protects.",
+  alternates: { canonical: "/product/hycu-monitoring" },
+};
 
 const COVERS = [
   { icon: <ShieldCheck size={18} />, name: "Backup compliance",         body: "Per-workload protection state, what is, isn&apos;t, and shouldn&apos;t be, surfaced as posture, not just status." },

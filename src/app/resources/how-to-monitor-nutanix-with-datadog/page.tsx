@@ -2,7 +2,12 @@ import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head
 import { FinalCTA } from "@/components/sections/why-and-cta";
 import { CheckCircle, AlertTriangle, Sparkles } from "lucide-react";
 
-export const metadata = { title: "How to monitor Nutanix with Datadog" };
+export const metadata = {
+  title: "How to monitor Nutanix with Datadog",
+  description:
+    "How to monitor Nutanix with Datadog: use a typed collector, filter at the source, and keep full-fidelity evidence on-prem, plus the common pitfalls to avoid.",
+  alternates: { canonical: "/resources/how-to-monitor-nutanix-with-datadog" },
+};
 
 const RECOMMENDED = [
   { icon: <CheckCircle size={18} strokeWidth={1.5} />, name: "Use a typed collector",   body: "Pull from Prism API v3 plus Redfish plus IPFIX rather than generic exporters. Keep metric semantics intact." },

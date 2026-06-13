@@ -2,7 +2,12 @@ import { Server, HardDrive, Network, Activity, ShieldCheck, TrendingUp, BarChart
 import { PageHead, SectionHead, FeatGrid, StatementBand } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "HCI Monitoring" };
+export const metadata = {
+  title: "HCI Monitoring",
+  description:
+    "HCI-aware Nutanix monitoring that keeps compute, storage, and network cause-and-effect on one screen, across clusters, hardware, network devices, backup, and flows.",
+  alternates: { canonical: "/product/hci-monitoring" },
+};
 
 const COVERS = [
   { icon: <Server size={18} />,      name: "Nutanix Clusters",     body: "Per-cluster health, container layout, replication factor, CVM telemetry, and protection state." },

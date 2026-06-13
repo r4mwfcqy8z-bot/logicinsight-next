@@ -2,7 +2,12 @@ import { Layers, AlertCircle, ShieldCheck, Settings, Globe } from "lucide-react"
 import { PageHead, SectionHead, FeatGrid, StatementBand } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Prism Central Monitoring" };
+export const metadata = {
+  title: "Prism Central Monitoring",
+  description:
+    "Multi-cluster Nutanix visibility from Prism Central: fleet health, capacity runway, protection state, and configuration drift across every cluster in one view.",
+  alternates: { canonical: "/product/prism-central-monitoring" },
+};
 
 const NEEDS = [
   { icon: <Layers size={18} />,      name: "Multi-cluster visibility",       body: "Health, capacity, and protection state across every cluster from one operational view." },

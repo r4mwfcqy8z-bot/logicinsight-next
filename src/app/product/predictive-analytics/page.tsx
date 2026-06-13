@@ -2,7 +2,12 @@ import { TrendingUp, Activity, BarChart3, Brain, Building2, Users, Briefcase } f
 import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Nutanix Capacity Planning and Predictive Analytics" };
+export const metadata = {
+  title: "Nutanix Capacity Planning and Predictive Analytics",
+  description:
+    "Compute and storage runway with confidence bands, per-VM right-sizing, and seasonal-baseline anomaly detection. Capacity forecasting in weeks, not averages.",
+  alternates: { canonical: "/product/predictive-analytics" },
+};
 
 const LAYERS = [
   { icon: <BarChart3 size={18} />,   name: "Compute forecasting",  body: "Per-cluster CPU and memory runway with confidence bands, broken out by workload class." },

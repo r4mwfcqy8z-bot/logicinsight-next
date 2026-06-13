@@ -3,7 +3,12 @@ import { DashboardPanel } from "@/components/dashboards/dashboard-panel";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 import { Search, Workflow, Activity, Box, Bell, Cable, Network, FileText, Eye } from "lucide-react";
 
-export const metadata = { title: "SNMP Network Monitoring" };
+export const metadata = {
+  title: "SNMP Network Monitoring",
+  description:
+    "Auto-discover switches, firewalls, and routers across every vendor. Port-level traffic, LLDP topology, VLAN inspection, and config backup from one Overwatch appliance.",
+  alternates: { canonical: "/product/snmp-monitoring" },
+};
 
 const PROBLEM = [
   { name: "Console sprawl",        body: "Different tools for polling, topology, traps, and config. Each has its own UI, alerts, and learning curve." },

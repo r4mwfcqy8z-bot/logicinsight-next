@@ -2,7 +2,12 @@ import { BarChart3, Server, Cloud, TrendingUp, Filter, Network } from "lucide-re
 import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Nutanix Grafana Integration" };
+export const metadata = {
+  title: "Nutanix Grafana Integration",
+  description:
+    "Drop pre-built Nutanix dashboards into self-hosted Grafana or Grafana Cloud, cluster, hypervisor, VM, and capacity views from typed Prism, Redfish, and flow metrics.",
+  alternates: { canonical: "/product/nutanix-grafana" },
+};
 
 const ADDS = [
   { icon: <BarChart3 size={18} />,  name: "Dashboard-ready Nutanix views",     body: "Pre-built Nutanix dashboards drop into Grafana, cluster, hypervisor, VM, capacity. No starting from a blank canvas." },

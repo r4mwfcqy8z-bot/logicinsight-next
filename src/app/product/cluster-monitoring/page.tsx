@@ -3,7 +3,12 @@ import { PageHead, SectionHead, FeatGrid } from "@/components/sections/page-head
 import { DashboardPanel } from "@/components/dashboards/dashboard-panel";
 import { FinalCTA } from "@/components/sections/why-and-cta";
 
-export const metadata = { title: "Nutanix Cluster Monitoring" };
+export const metadata = {
+  title: "Nutanix Cluster Monitoring",
+  description:
+    "Monitor every layer of the Nutanix stack, Prism Central and Element, hosts and CVMs, VMs, and storage, with physical-to-virtual correlation and per-resource ML baselines.",
+  alternates: { canonical: "/product/cluster-monitoring" },
+};
 
 const LAYERS = [
   { icon: <Layers size={18} />,    name: "Prism Central",           body: "Multi-cluster management, categories, projects, and cross-cluster health correlation in one operational view." },
