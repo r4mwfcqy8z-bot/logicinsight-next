@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://logicinsight.io
+Sitemap: https://logicinsight.io/sitemap.xml
